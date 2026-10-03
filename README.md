@@ -1,9 +1,9 @@
 # Awesome Video as Code [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 <p align="center">
-  <a href="assets/trailer.mp4"><img src="assets/trailer.gif" width="720" alt="Trailer: an agent receives a brief, writes a seekable HTML animation, and headless Chrome renders it frame by frame into a video"></a>
+  <a href="assets/trailer.mp4"><img src="assets/trailer-teaser.gif" width="720" alt="Trailer excerpt: raymarched iridescent metaballs orbit inside a ring, burst into particles, and reassemble into the title Awesome Video as Code"></a>
   <br>
-  <sub>This trailer is itself video as code: an AI agent wrote it as <a href="trailer/index.html">one HTML page</a>, and a <a href="trailer/render.mjs">zero-dependency script</a> rendered it with headless Chrome and FFmpeg.</sub>
+  <sub><a href="assets/trailer.mp4"><b>▶ Watch the full trailer in 2560×1440 at 60 fps</b></a> · It is itself video as code: an AI agent wrote it as <a href="trailer/">HTML and a GLSL raymarcher</a>, and a <a href="trailer/render.mjs">zero-dependency script</a> rendered it with headless Chrome and FFmpeg.</sub>
 </p>
 
 > Curated tools, agent skills, production workflows, source-available showcases, and research for creating videos with code written or directed by AI agents.

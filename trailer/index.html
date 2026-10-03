@@ -8,88 +8,94 @@
     --bg-a: #111827;
     --bg-b: #18181b;
     --panel: #0b1020;
+    --line: rgba(248, 250, 252, .16);
     --ink: #f8fafc;
     --muted: #94a3b8;
+    --dim: #64748b;
     --amber: #fbbf24;
     --rose: #fb7185;
     --violet: #a78bfa;
     --green: #34d399;
     --signal: linear-gradient(90deg, var(--amber), var(--rose) 50%, var(--violet));
+    --mono: "SF Mono", "JetBrains Mono", Menlo, monospace;
+    --sans: -apple-system, "Inter", "Segoe UI", sans-serif;
   }
   * { box-sizing: border-box; margin: 0; }
   html, body { width: 1280px; height: 720px; overflow: hidden; }
-  body {
-    background: linear-gradient(135deg, var(--bg-a), var(--bg-b));
-    color: var(--ink);
-    font-family: "SF Mono", "JetBrains Mono", Menlo, monospace;
-  }
+  body { background: linear-gradient(135deg, var(--bg-a), var(--bg-b)); color: var(--ink); font-family: var(--mono); }
+  .layer { position: absolute; inset: 0; }
   .scene { position: absolute; inset: 0; opacity: 0; }
-  .rail { position: absolute; left: 64px; right: 64px; height: 1px; background: rgba(248,250,252,.08); }
-  .stage-label {
-    position: absolute; left: 64px; top: 40px;
-    font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted);
-  }
+  .rail { position: absolute; left: 64px; right: 64px; top: 72px; height: 1px; background: rgba(248,250,252,.08); }
+  .stage-label { position: absolute; left: 64px; top: 40px; font-size: 15px; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); }
   .stage-label b { color: var(--ink); font-weight: 600; }
+  canvas.layer { width: 1280px; height: 720px; }
+  #gl { z-index: 2; opacity: 0; }
+  #hud { z-index: 3; }
+  #fx { z-index: 4; }
+  #s5 { z-index: 5; }
 
-  /* Scene 1 — the brief */
+  /* 01 — brief */
   .term {
     position: absolute; left: 50%; top: 50%; width: 900px; transform: translate(-50%, -50%);
-    background: var(--panel); border: 1px solid rgba(248,250,252,.16); border-radius: 22px;
-    padding: 28px 36px 40px; box-shadow: 0 40px 80px rgba(0,0,0,.45);
+    background: var(--panel); border: 1px solid var(--line); border-radius: 22px;
+    padding: 28px 36px 34px; box-shadow: 0 40px 80px rgba(0,0,0,.45);
   }
   .dots { display: flex; gap: 10px; margin-bottom: 28px; }
   .dots i { width: 13px; height: 13px; border-radius: 50%; display: block; }
   .prompt { font-size: 34px; line-height: 1.45; min-height: 100px; }
-  .prompt .caret { display: inline-block; width: 16px; height: 36px; background: var(--amber); vertical-align: -6px; margin-left: 4px; }
+  .caret { display: inline-block; width: 16px; height: 36px; background: var(--amber); vertical-align: -6px; margin-left: 4px; }
   .agent-line { margin-top: 18px; min-height: 30px; font-size: 20px; color: var(--muted); }
 
-  /* Scene 2 — the code */
+  /* 02 — code + live preview */
   .code {
-    position: absolute; left: 64px; top: 128px; width: 700px; height: 528px;
-    background: var(--panel); border: 1px solid rgba(248,250,252,.16); border-radius: 22px;
-    padding: 26px 32px; font-size: 17px; line-height: 1.66; white-space: pre; overflow: hidden;
+    position: absolute; left: 64px; top: 128px; width: 528px; height: 528px;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
+    padding: 24px 26px; font-size: 14.5px; line-height: 1.62; white-space: pre; overflow: hidden;
   }
-  .tok-k { color: var(--violet); } .tok-s { color: var(--amber); }
-  .tok-n { color: var(--rose); } .tok-c { color: #64748b; } .tok-f { color: var(--green); }
-  .preview {
-    position: absolute; right: 64px; top: 128px; width: 420px; height: 236px;
-    background: var(--panel); border: 1px solid rgba(248,250,252,.16); border-radius: 18px; overflow: hidden;
-  }
-  .preview canvas { width: 100%; height: 100%; display: block; }
-  .meter { position: absolute; right: 64px; top: 392px; width: 420px; font-size: 17px; color: var(--muted); }
-  .bar { margin-top: 12px; height: 8px; border-radius: 4px; background: rgba(248,250,252,.1); overflow: hidden; }
-  .bar span { display: block; height: 100%; background: var(--signal); }
-  .meter .cmd { margin-top: 26px; color: var(--ink); font-size: 17px; line-height: 1.7; }
+  .code .cur { display: inline-block; width: 8px; height: 17px; background: var(--amber); vertical-align: -3px; }
+  .tok-k { color: var(--violet); } .tok-n { color: var(--rose); } .tok-c { color: var(--dim); } .tok-f { color: var(--green); }
+  .preview-frame { position: absolute; left: 624px; top: 128px; width: 592px; height: 333px; border: 1px solid var(--line); border-radius: 18px; }
+  .layers { position: absolute; left: 624px; top: 489px; width: 592px; font-size: 15px; }
+  .layers ul { padding: 0; }
+  .layers li { list-style: none; display: flex; align-items: center; gap: 14px; height: 40px; padding: 0 16px; border-radius: 10px; color: var(--dim); }
+  .layers li.active { background: rgba(248,250,252,.05); color: var(--ink); }
+  .layers li.done { color: var(--muted); }
+  .layers .mark { width: 18px; text-align: center; }
+  .layers li.done .mark { color: var(--green); }
+  .layers li.active .mark { color: var(--amber); }
 
-  /* Scene 3 — the pipeline + title */
+  /* 03 — full-frame HUD */
+  .corner { position: absolute; width: 34px; height: 34px; border: 0 solid rgba(248,250,252,.7); }
+  .tl { left: 36px; top: 36px; border-left-width: 2px; border-top-width: 2px; }
+  .tr { right: 36px; top: 36px; border-right-width: 2px; border-top-width: 2px; }
+  .bl { left: 36px; bottom: 36px; border-left-width: 2px; border-bottom-width: 2px; }
+  .br { right: 36px; bottom: 36px; border-right-width: 2px; border-bottom-width: 2px; }
+  .hud-text { position: absolute; font-size: 15px; letter-spacing: .08em; color: rgba(248,250,252,.86); text-shadow: 0 1px 8px rgba(0,0,0,.6); }
+  .rec-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--rose); margin-right: 9px; }
+  .lower-third {
+    position: absolute; left: 0; right: 0; bottom: 74px; text-align: center;
+    font-family: var(--sans); font-size: 24px; font-weight: 600; letter-spacing: -.01em; text-shadow: 0 2px 18px rgba(0,0,0,.7);
+  }
+  .lower-third span { color: #b4bfcf; font-weight: 400; }
+
+  /* 05 — title card */
   .title {
     position: absolute; left: 0; right: 0; top: 168px; text-align: center;
-    font-family: -apple-system, "Inter", "Segoe UI", sans-serif; font-weight: 800;
-    font-size: 92px; letter-spacing: -.035em; line-height: 1;
+    font-family: var(--sans); font-weight: 800; font-size: 92px; letter-spacing: -.035em; line-height: 1;
   }
-  .title em {
-    font-style: normal; background: var(--signal); -webkit-background-clip: text; background-clip: text; color: transparent;
-  }
+  .title em { font-style: normal; background: var(--signal); -webkit-background-clip: text; background-clip: text; color: transparent; }
   .pipe { position: absolute; left: 0; right: 0; top: 352px; display: flex; justify-content: center; align-items: center; gap: 14px; }
-  .chip {
-    padding: 14px 22px; border-radius: 999px; font-size: 21px;
-    background: var(--panel); border: 1px solid rgba(248,250,252,.18);
-  }
+  .chip { padding: 14px 22px; border-radius: 999px; font-size: 21px; background: var(--panel); border: 1px solid rgba(248,250,252,.18); }
   .arrow { color: var(--muted); font-size: 22px; }
-  .tagline {
-    position: absolute; left: 0; right: 0; top: 452px; text-align: center;
-    font-family: -apple-system, "Inter", "Segoe UI", sans-serif; font-size: 27px; color: var(--muted);
-  }
-  .url {
-    position: absolute; left: 0; right: 0; top: 548px; text-align: center; font-size: 26px;
-  }
+  .tagline { position: absolute; left: 0; right: 0; top: 452px; text-align: center; font-family: var(--sans); font-size: 27px; color: #b4bfcf; }
+  .url { position: absolute; left: 0; right: 0; top: 548px; text-align: center; font-size: 26px; }
   .url span { padding: 14px 26px; border-radius: 14px; border: 1px solid rgba(248,250,252,.18); background: var(--panel); }
-  .footnote { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font-size: 15px; color: #64748b; letter-spacing: .04em; }
-  .signal-line { position: absolute; left: 64px; right: 64px; bottom: 80px; height: 2px; background: var(--signal); opacity: .55; transform-origin: left; }
+  .footnote { position: absolute; left: 0; right: 0; bottom: 34px; text-align: center; font-size: 15px; color: var(--dim); letter-spacing: .04em; }
+  .signal-line { position: absolute; left: 64px; right: 64px; bottom: 80px; height: 2px; background: var(--signal); opacity: .55; transform-origin: left; transform: scaleX(0); }
 </style>
 </head>
 <body>
-  <div class="rail" style="top:72px"></div>
+  <div class="rail" id="rail"></div>
 
   <section class="scene" id="s1">
     <p class="stage-label"><b>01</b> &nbsp;brief</p>
@@ -101,17 +107,26 @@
   </section>
 
   <section class="scene" id="s2">
-    <p class="stage-label"><b>02</b> &nbsp;agent writes code &nbsp;·&nbsp; <b>03</b> &nbsp;renderer draws frames</p>
+    <p class="stage-label"><b>02</b> &nbsp;agent writes a shader &nbsp;·&nbsp; <b>03</b> &nbsp;preview re-renders each layer</p>
     <div class="code" id="code"></div>
-    <div class="preview"><canvas id="cv" width="840" height="472"></canvas></div>
-    <div class="meter">
-      <div id="frameCount">frame 0 / 450</div>
-      <div class="bar"><span id="barFill" style="width:0"></span></div>
-      <div class="cmd" id="cmd"></div>
-    </div>
+    <div class="preview-frame"></div>
+    <div class="layers"><ul id="layers"></ul></div>
   </section>
 
-  <section class="scene" id="s3">
+  <canvas class="layer" id="gl"></canvas>
+
+  <section class="scene" id="hud">
+    <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
+    <p class="hud-text" style="left:84px;top:44px"><span class="rec-dot" id="recDot"></span>RENDER</p>
+    <p class="hud-text" style="right:84px;top:44px">2560 × 1440 · 60 FPS</p>
+    <p class="hud-text" style="left:84px;bottom:44px">every pixel = f(t)</p>
+    <p class="hud-text" style="right:84px;bottom:44px" id="hudFrame">frame 0000 / 1080</p>
+    <p class="lower-third" id="lowerThird">One fragment shader. <span>No footage, no models, no assets.</span></p>
+  </section>
+
+  <canvas class="layer" id="fx"></canvas>
+
+  <section class="scene" id="s5">
     <h1 class="title" id="title">Awesome <em>Video&nbsp;as&nbsp;Code</em></h1>
     <div class="pipe" id="pipe">
       <span class="chip">brief</span><span class="arrow">→</span>
@@ -122,138 +137,12 @@
     </div>
     <p class="tagline" id="tagline">Frameworks, agent skills, MCP servers, pipelines, showcases &amp; research.</p>
     <p class="url" id="url"><span>github.com/voidforall/awesome-video-as-code</span></p>
-    <p class="footnote" id="footnote">This trailer is an HTML page written by an AI agent, seeked frame by frame in headless Chrome, encoded with FFmpeg.</p>
+    <p class="footnote" id="footnote">This trailer is HTML + GLSL written by an AI agent, seeked frame by frame in headless Chrome, encoded with FFmpeg.</p>
+    <div class="signal-line" id="signalLine"></div>
   </section>
 
-  <div class="signal-line" id="signalLine"></div>
-
-<script>
-  // Deterministic timeline: every visual is a pure function of t (seconds).
-  // The renderer calls window.seek(t) for each frame; no wall-clock animation.
-  const FPS = 30;
-  const DURATION = 15;
-  window.TRAILER = { fps: FPS, duration: DURATION };
-
-  const BRIEF = 'make a 15-second trailer for a list of video-as-code tools';
-  const AGENT_STEPS = ['reading brief…', 'planning 3 scenes…', 'writing index.html…'];
-  const CODE_HTML = [
-    '<span class="tok-c">// every pixel is a function of time</span>',
-    '<span class="tok-k">function</span> <span class="tok-f">seek</span>(t) {',
-    '  <span class="tok-k">const</span> p = <span class="tok-f">ease</span>(t / <span class="tok-n">4</span>);',
-    '  ctx.<span class="tok-f">fillStyle</span> = <span class="tok-s">"#0b1020"</span>;',
-    '  ctx.<span class="tok-f">fillRect</span>(<span class="tok-n">0</span>, <span class="tok-n">0</span>, W, H);',
-    '  <span class="tok-k">for</span> (<span class="tok-k">let</span> i = <span class="tok-n">0</span>; i &lt; <span class="tok-n">48</span>; i++) {',
-    '    <span class="tok-k">const</span> x = i * W / <span class="tok-n">47</span>;',
-    '    <span class="tok-k">const</span> y = H/<span class="tok-n">2</span> + Math.<span class="tok-f">sin</span>(i/<span class="tok-n">4</span> + t*<span class="tok-n">3</span>) * <span class="tok-n">90</span> * p;',
-    '    <span class="tok-f">dot</span>(x, y, <span class="tok-f">hue</span>(i / <span class="tok-n">48</span>));',
-    '  }',
-    '}',
-    '',
-    '<span class="tok-c">// headless chrome → png frames → ffmpeg</span>',
-    '<span class="tok-k">for</span> (<span class="tok-k">let</span> f = <span class="tok-n">0</span>; f &lt; <span class="tok-n">450</span>; f++) {',
-    '  <span class="tok-k">await</span> page.<span class="tok-f">seek</span>(f / <span class="tok-n">30</span>);',
-    '  <span class="tok-k">await</span> page.<span class="tok-f">screenshot</span>(<span class="tok-s">`f${f}.png`</span>);',
-    '}',
-  ];
-
-  const $ = (id) => document.getElementById(id);
-  const clamp = (v, a = 0, b = 1) => Math.min(b, Math.max(a, v));
-  const ease = (x) => { const c = clamp(x); return c < .5 ? 4 * c * c * c : 1 - Math.pow(-2 * c + 2, 3) / 2; };
-  const span = (t, a, b) => clamp((t - a) / (b - a));
-  // Fade in over [a, a+f], hold, fade out over [b-f, b].
-  const window_ = (t, a, b, f = .4) => Math.min(ease(span(t, a, a + f)), 1 - ease(span(t, b - f, b)));
-  const HUES = ['#fbbf24', '#fb7185', '#a78bfa'];
-
-  function lerpHex(a, b, k) {
-    const pa = parseInt(a.slice(1), 16), pb = parseInt(b.slice(1), 16);
-    const ch = (s) => Math.round(((pa >> s) & 255) + (((pb >> s) & 255) - ((pa >> s) & 255)) * k);
-    return `rgb(${ch(16)},${ch(8)},${ch(0)})`;
-  }
-  function signalColor(x) {
-    const k = clamp(x) * 2;
-    return k < 1 ? lerpHex(HUES[0], HUES[1], k) : lerpHex(HUES[1], HUES[2], k - 1);
-  }
-
-  function sceneBrief(t) {
-    const s = $('s1');
-    s.style.opacity = window_(t, 0, 4.6);
-    s.style.transform = `translateY(${(1 - ease(span(t, 0, .6))) * 24}px)`;
-    const n = Math.floor(BRIEF.length * span(t, .5, 2.6));
-    $('typed').textContent = BRIEF.slice(0, n);
-    $('caret').style.opacity = (Math.floor(t * 2.5) % 2 === 0 || n < BRIEF.length) ? 1 : 0;
-    const step = Math.floor(span(t, 2.9, 4.4) * AGENT_STEPS.length);
-    $('agentLine').innerHTML = t < 2.9 ? '' :
-      `<span style="color:var(--green)">agent</span> &nbsp;${AGENT_STEPS[Math.min(step, AGENT_STEPS.length - 1)]}`;
-  }
-
-  function drawPreview(t, progress) {
-    const cv = $('cv'), ctx = cv.getContext('2d');
-    const W = cv.width, H = cv.height;
-    ctx.fillStyle = '#0b1020';
-    ctx.fillRect(0, 0, W, H);
-    const p = .35 + .65 * ease(progress * 1.4);
-    for (let i = 0; i < 48; i++) {
-      const x = 24 + i * (W - 48) / 47;
-      const y = H / 2 + Math.sin(i / 4 + t * 3) * 120 * p;
-      const r = 6 + 5 * Math.sin(i / 3 + t * 2) ** 2;
-      ctx.globalAlpha = .18;
-      ctx.fillStyle = signalColor(i / 47);
-      ctx.beginPath(); ctx.arc(x, y, r * 2.6, 0, Math.PI * 2); ctx.fill();
-      ctx.globalAlpha = 1;
-      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2); ctx.fill();
-    }
-    // Unrendered region: a playhead wipes left to right as frames complete.
-    if (progress < 1) {
-      const head = W * progress;
-      ctx.fillStyle = '#0b1020';
-      ctx.fillRect(head, 0, W - head, H);
-      ctx.fillStyle = 'rgba(251,113,133,.9)';
-      ctx.fillRect(head - 2, 0, 3, H);
-    }
-  }
-
-  function sceneCode(t) {
-    const s = $('s2');
-    s.style.opacity = window_(t, 4.4, 10.4);
-    const lines = Math.floor(CODE_HTML.length * span(t, 4.7, 7.6));
-    $('code').innerHTML = CODE_HTML.slice(0, lines).join('\n');
-    const progress = span(t, 7.4, 10.1);
-    const frame = Math.round(progress * 450);
-    $('frameCount').textContent = `frame ${frame} / 450`;
-    $('barFill').style.width = `${progress * 100}%`;
-    $('cmd').innerHTML = progress >= 1
-      ? '<span style="color:var(--green)">✓</span> ffmpeg → trailer.mp4'
-      : (progress > 0 ? 'chrome --headless · seek(t) · capture' : 'waiting for code…');
-    drawPreview(t, progress);
-  }
-
-  function sceneTitle(t) {
-    const s = $('s3');
-    s.style.opacity = ease(span(t, 10.2, 10.8));
-    const rise = (a) => `translateY(${(1 - ease(span(t, a, a + .7))) * 30}px)`;
-    const fade = (a) => ease(span(t, a, a + .7));
-    [['title', 10.3], ['pipe', 11.0], ['tagline', 11.6], ['url', 12.2], ['footnote', 12.8]].forEach(([id, a]) => {
-      $(id).style.opacity = fade(a);
-      $(id).style.transform = rise(a);
-    });
-    $('signalLine').style.transform = `scaleX(${ease(span(t, 10.4, 14))})`;
-  }
-
-  window.seek = function seek(t) {
-    sceneBrief(t);
-    sceneCode(t);
-    sceneTitle(t);
-  };
-
-  // Allow manual preview in a browser: ?t=12 freezes a frame, otherwise play in real time.
-  const fixed = new URLSearchParams(location.search).get('t');
-  if (fixed !== null) {
-    window.seek(Number(fixed));
-  } else if (!navigator.webdriver && !window.__RENDERING__) {
-    const t0 = performance.now();
-    const loop = () => { window.seek(((performance.now() - t0) / 1000) % DURATION); requestAnimationFrame(loop); };
-    requestAnimationFrame(loop);
-  }
-</script>
+  <script src="raymarch.js"></script>
+  <script src="particles.js"></script>
+  <script src="timeline.js"></script>
 </body>
 </html>

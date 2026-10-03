@@ -1,10 +1,12 @@
 #!/usr/bin/env node
-// Renders trailer/index.html to MP4 + GIF with no npm dependencies:
+// Renders trailer/index.html to MP4 (plus a README teaser GIF) with no npm dependencies:
 // local headless Chrome is driven over the DevTools Protocol, each frame is
 // produced by calling window.seek(t), and FFmpeg encodes the PNG sequence.
 //
-// Usage: node trailer/render.mjs [--chrome /path/to/chrome]
-// Requires Node 22+ (global WebSocket) and ffmpeg on PATH.
+// Usage:
+//   node trailer/render.mjs [--chrome /path/to/chrome] [--scale 2]
+//   node trailer/render.mjs --stills 4.2,9,14 --out /tmp/stills   # spot-check frames
+// Requires Node 22+ (global WebSocket), Google Chrome with WebGL2, and ffmpeg on PATH.
 
 import { spawn, execFileSync } from 'node:child_process';
 import { existsSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -22,10 +24,13 @@ const DEFAULT_CHROME = {
   win32: 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe',
 }[process.platform];
 
-function chromePath() {
-  const i = process.argv.indexOf('--chrome');
-  return i > -1 ? process.argv[i + 1] : DEFAULT_CHROME;
+function arg(name, fallback) {
+  const i = process.argv.indexOf(`--${name}`);
+  return i > -1 ? process.argv[i + 1] : fallback;
 }
+const SCALE = Number(arg('scale', '2'));
+// README teaser: the showpiece span only; a full-length GIF of shader footage is far too heavy.
+const TEASER = { start: 8.0, duration: 7.6, width: 720, fps: 12 };
 
 // Chrome picks a free port (--remote-debugging-port=0) and writes it to
 // DevToolsActivePort inside the profile, so concurrent Chromes never collide.
@@ -77,9 +82,21 @@ function connect(url) {
 }
 
 async function evaluate(cdp, expression) {
-  const { result, exceptionDetails } = await cdp.send('Runtime.evaluate', { expression, returnByValue: true });
+  const { result, exceptionDetails } = await cdp.send('Runtime.evaluate', { expression, returnByValue: true, awaitPromise: true });
   if (exceptionDetails) throw new Error(`Page error: ${exceptionDetails.exception?.description ?? exceptionDetails.text}`);
   return result.value;
+}
+
+async function screenshot(cdp, path, clip) {
+  const { data } = await cdp.send('Page.captureScreenshot', { format: 'png', optimizeForSpeed: true, ...(clip && { clip }) });
+  writeFileSync(path, Buffer.from(data, 'base64'));
+}
+
+async function captureStills(cdp, times, outDir) {
+  for (const t of times) {
+    await evaluate(cdp, `window.seek(${t})`);
+    await screenshot(cdp, join(outDir, `still-${t}.png`));
+  }
 }
 
 async function captureFrames(cdp, framesDir) {
@@ -87,8 +104,7 @@ async function captureFrames(cdp, framesDir) {
   const total = Math.round(fps * duration);
   for (let f = 0; f < total; f++) {
     await evaluate(cdp, `window.seek(${f / fps})`);
-    const { data } = await cdp.send('Page.captureScreenshot', { format: 'png' });
-    writeFileSync(join(framesDir, `f${String(f).padStart(4, '0')}.png`), Buffer.from(data, 'base64'));
+    await screenshot(cdp, join(framesDir, `f${String(f).padStart(4, '0')}.png`));
     if (f % fps === 0) process.stdout.write(`\rframe ${f}/${total}`);
   }
   process.stdout.write(`\rframe ${total}/${total}\n`);
@@ -96,46 +112,56 @@ async function captureFrames(cdp, framesDir) {
 }
 
 // GitHub social preview: 1280x640, final title card without the footnote.
-async function captureSocialPreview(cdp) {
+async function captureSocialPreview(cdp, framesDir) {
   await evaluate(cdp, `window.seek(window.TRAILER.duration); document.getElementById('footnote').style.visibility = 'hidden'`);
-  const { data } = await cdp.send('Page.captureScreenshot', {
-    format: 'png', clip: { x: 0, y: 48, width: WIDTH, height: 640, scale: 1 },
-  });
-  writeFileSync(join(OUT_DIR, 'social-preview.png'), Buffer.from(data, 'base64'));
+  const raw = join(framesDir, 'social.png');
+  await screenshot(cdp, raw, { x: 0, y: 48, width: WIDTH, height: 640, scale: 1 });
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-i', raw, '-vf', `scale=${WIDTH}:640:flags=lanczos`,
+    join(OUT_DIR, 'social-preview.png')], { stdio: 'inherit' });
 }
 
 function encode(framesDir, fps) {
   const input = ['-y', '-loglevel', 'error', '-framerate', String(fps), '-i', join(framesDir, 'f%04d.png')];
-  execFileSync('ffmpeg', [...input, '-c:v', 'libx264', '-pix_fmt', 'yuv420p', '-crf', '18',
-    '-movflags', '+faststart', join(OUT_DIR, 'trailer.mp4')], { stdio: 'inherit' });
-  execFileSync('ffmpeg', [...input, '-vf',
-    'fps=15,scale=800:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=4:diff_mode=rectangle',
-    '-loop', '0', join(OUT_DIR, 'trailer.gif')], { stdio: 'inherit' });
+  execFileSync('ffmpeg', [...input, '-c:v', 'libx264', '-preset', 'slow', '-profile:v', 'high', '-pix_fmt', 'yuv420p',
+    '-crf', '24', '-movflags', '+faststart', join(OUT_DIR, 'trailer.mp4')], { stdio: 'inherit' });
+  execFileSync('ffmpeg', ['-y', '-loglevel', 'error', '-ss', String(TEASER.start), '-t', String(TEASER.duration),
+    '-i', join(OUT_DIR, 'trailer.mp4'), '-vf',
+    `fps=${TEASER.fps},scale=${TEASER.width}:-1:flags=lanczos,split[a][b];[a]palettegen=max_colors=128:stats_mode=diff[p];[b][p]paletteuse=dither=bayer:bayer_scale=2:diff_mode=rectangle`,
+    '-loop', '0', join(OUT_DIR, 'trailer-teaser.gif')], { stdio: 'inherit' });
 }
 
 async function main() {
   const framesDir = mkdtempSync(join(tmpdir(), 'trailer-frames-'));
   const profileDir = mkdtempSync(join(tmpdir(), 'trailer-chrome-'));
-  const chrome = spawn(chromePath(), [
+  const chrome = spawn(arg('chrome', DEFAULT_CHROME), [
     '--headless=new', '--remote-debugging-port=0', `--user-data-dir=${profileDir}`,
-    `--window-size=${WIDTH},${HEIGHT}`, '--hide-scrollbars', '--force-device-scale-factor=1',
+    `--window-size=${WIDTH},${HEIGHT}`, '--hide-scrollbars', '--enable-gpu', '--ignore-gpu-blocklist',
+    ...(process.platform === 'darwin' ? ['--use-angle=metal'] : []),
     '--no-first-run', '--no-default-browser-check', 'about:blank',
   ], { stdio: 'ignore' });
   try {
     const cdp = await connect(await waitForTarget(profileDir));
     await cdp.send('Page.enable');
-    await cdp.send('Emulation.setDeviceMetricsOverride', { width: WIDTH, height: HEIGHT, deviceScaleFactor: 1, mobile: false });
+    await cdp.send('Emulation.setDeviceMetricsOverride', { width: WIDTH, height: HEIGHT, deviceScaleFactor: SCALE, mobile: false });
     const loaded = cdp.once('Page.loadEventFired');
     await cdp.send('Page.navigate', { url: `${pathToFileURL(join(HERE, 'index.html')).href}?t=0` });
     await loaded;
     await evaluate(cdp, 'document.fonts.ready.then(() => true)');
+    const stills = arg('stills');
+    if (stills) {
+      await captureStills(cdp, stills.split(',').map(Number), arg('out', framesDir));
+      cdp.close();
+      return;
+    }
     const fps = await captureFrames(cdp, framesDir);
-    await captureSocialPreview(cdp);
+    await captureSocialPreview(cdp, framesDir);
     cdp.close();
     encode(framesDir, fps);
-    console.log(`Wrote ${join(OUT_DIR, 'trailer.mp4')}, trailer.gif, social-preview.png`);
+    console.log(`Wrote ${join(OUT_DIR, 'trailer.mp4')}, trailer-teaser.gif, and social-preview.png`);
   } finally {
+    const exited = new Promise((resolve) => chrome.once('exit', resolve));
     chrome.kill();
+    await exited;
     rmSync(framesDir, { recursive: true, force: true });
     rmSync(profileDir, { recursive: true, force: true });
   }
