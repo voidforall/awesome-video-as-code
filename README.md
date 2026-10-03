@@ -1,9 +1,9 @@
 # Awesome Video as Code [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 <p align="center">
-  <a href="assets/trailer.mp4"><img src="assets/trailer-teaser.gif" width="720" alt="Trailer excerpt: gravity bends a black hole's accretion disk into a lensed ring, the view fills the frame, and the disk dissolves into particles that form the title Awesome Video as Code"></a>
+  <a href="assets/trailer.mp4"><img src="assets/trailer-teaser.gif" width="720" alt="Trailer excerpt: shader code beside its live render of a starfield, the Milky Way, and nebulae; the render fills the frame, then the stars gather into the title Awesome Video as Code"></a>
   <br>
-  <sub><a href="assets/trailer.mp4"><b>▶ Watch the full trailer in 2560×1440 at 60 fps</b></a> · It is itself video as code: an AI agent wrote it as <a href="trailer/">HTML and a GLSL black-hole shader</a>, and a <a href="trailer/render.mjs">zero-dependency script</a> rendered it with headless Chrome and FFmpeg.</sub>
+  <sub><a href="assets/trailer.mp4"><b>▶ Watch the full trailer in 2560×1440 at 60 fps</b></a> · It is itself video as code: an AI agent wrote it as <a href="trailer/">HTML and a GLSL deep-space shader</a>, and a <a href="trailer/render.mjs">zero-dependency script</a> rendered it with headless Chrome and FFmpeg.</sub>
 </p>
 
 > Curated tools, agent skills, production workflows, source-available showcases, and research for creating videos with code written or directed by AI agents.

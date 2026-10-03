@@ -2,35 +2,46 @@
 // The renderer calls window.seek(t) once per frame; nothing depends on wall-clock time.
 (function () {
   const FPS = 60;
-  const DURATION = 18;
+  const DURATION = 21;
   window.TRAILER = { fps: FPS, duration: DURATION };
 
-  const BRIEF = 'render a black hole bending light, with nothing but code';
-  const AGENT_STEPS = ['planning 4 shots…', 'writing blackhole.glsl…', 'tracing 3.7M light rays per frame…'];
+  // Shot list (seconds). The split code/render view holds for a while after typing ends.
+  const SHOT = {
+    briefEnd: 3.3,
+    codeStart: 3.35,
+    chunkLen: 1.15,
+    holdEnd: 10.6,             // split view stays up until here
+    expand: [10.6, 11.5],      // preview grows to full frame
+    hud: [11.3, 15.2],
+    lowerThird: [11.9, 14.9],
+    dim: [14.9, 16.2],         // sky dims behind the title
+    particles: { t0: 14.85, t1: 17.35 },
+    title: 17.25,
+  };
+
+  const BRIEF = 'render a flight through deep space, with nothing but code';
+  const AGENT_STEPS = ['planning 4 shots…', 'writing universe.glsl…', `rendering ${FPS * DURATION} frames…`];
 
   // The code panel types the same techniques universe.js uses, one layer per chunk.
   const CHUNKS = [
-    ['// 1 · stars: hashed points on the sky sphere',
-      'vec3 h = hash33(floor(dir * 80.));',
-      'float on = step(.7, h.y);',
-      'c += on * exp(-900. * dot(f, f));'],
-    ['// 2 · nebula: five octaves of fractal noise',
-      'float n = fbm(dir * 2.2);',
-      'float m = fbm(dir * 4.6 + n * 1.6);',
-      'c += mix(TEAL, DUST, m) * n * n * band;'],
-    ['// 3 · accretion disk: Keplerian shear',
-      'float w = 1.6 / pow(r, 1.5);',
-      'vec2 q = rotate(p.xz, -t * w);',
-      'c += heat(r) * fbm(q) * pow(doppler, 2.5);'],
-    ['// 4 · gravity bends every light ray',
-      'for (int i = 0; i < 320; i++) {',
-      '  vel += -1.5 * h2 * pos / pow(r, 5.) * dt;',
-      '  pos += vel * dt;',
-      '}'],
+    ['// 1 · stars: hashed points, colored by temperature',
+      'vec3 h = hash33(floor(dir * 90.));',
+      'float on = step(.62, h.y);',
+      'c += temp(h.x) * on * star(dot(f, f));'],
+    ['// 2 · milky way: a noise band with dust lanes',
+      'float band = exp(-55. * pow(dot(dir, GAL), 2.));',
+      'float lanes = smoothstep(.42, .72, fbm(dir * 6.));',
+      'c += glow * band * haze * (1. - .88 * lanes);'],
+    ['// 3 · nebulae: domain-warped fractal noise',
+      'float q = fbm(dir * 2.5);',
+      'float r = fbm(dir * 2.5 + 4. * q);',
+      'c += mix(OIII, H_ALPHA, fbm(dir * 5.)) * pow(r, 2.6);'],
+    ['// 4 · depth: bright stars, spikes, drift',
+      'c += spikes(dot(v, camRt), dot(v, camUp));',
+      'float z = fract(i / 5. + t * .035);',
+      'c += nearStar(uv * mix(22., .6, z)) * fade;'],
   ].map((lines) => lines.join('\n'));
-  const LAYERS = ['starfield', 'nebula', 'accretion disk', 'gravitational lensing'];
-  const CODE_START = 3.35;
-  const CHUNK_LEN = 1.05;
+  const LAYERS = ['starfield', 'milky way', 'nebulae', 'depth · spikes · drift'];
   const PREVIEW = { x: 624, y: 128, w: 592, h: 333 };
   const FULL = { x: 0, y: 0, w: 1280, h: 720 };
 
@@ -55,7 +66,13 @@
     return out + escapeHtml(src.slice(last));
   }
 
-  const chunkWindow = (i) => [CODE_START + i * CHUNK_LEN, CODE_START + (i + 1) * CHUNK_LEN - .2];
+  const chunkWindow = (i) => [SHOT.codeStart + i * SHOT.chunkLen, SHOT.codeStart + (i + 1) * SHOT.chunkLen - .2];
+  const typingEnd = chunkWindow(CHUNKS.length - 1)[1] + .5;
+  // During the hold, spotlight each chunk with its layer row in turn.
+  const spotlightAt = (t) => {
+    const slot = (SHOT.holdEnd - .3 - typingEnd) / CHUNKS.length;
+    return t < typingEnd || t >= SHOT.holdEnd - .3 ? -1 : Math.floor((t - typingEnd) / slot);
+  };
   const stageAt = (t) => CHUNKS.reduce((s, _, i) => s + ease(span(t, chunkWindow(i)[1], chunkWindow(i)[1] + .45)), 0);
 
   const draw = window.createUniverse($('gl'));
@@ -81,63 +98,65 @@
   }
 
   function sceneCode(t) {
-    $('s2').style.opacity = visible(t, 3.1, 8.5, .45);
+    $('s2').style.opacity = visible(t, 3.1, SHOT.expand[0] + .6, .45);
     let typing = -1;
+    const spot = spotlightAt(t);
     const shown = CHUNKS.map((chunk, i) => {
       const [a, b] = chunkWindow(i);
       if (t >= a && t < b) typing = i;
       return chunk.slice(0, Math.floor(chunk.length * span(t, a, b)));
     }).filter(Boolean);
-    $('code').innerHTML = highlight(shown.join('\n\n')) + (typing >= 0 ? '<span class="cur"></span>' : '');
+    $('code').innerHTML = shown
+      .map((src, i) => `<span style="opacity:${spot < 0 || spot === i ? 1 : .35}">${highlight(src)}</span>`)
+      .join('\n\n') + (typing >= 0 ? '<span class="cur"></span>' : '');
     $('layers').innerHTML = LAYERS.map((name, i) => {
-      const state = t >= chunkWindow(i)[1] ? 'done' : typing === i ? 'active' : '';
+      const state = spot === i || typing === i ? 'active' : t >= chunkWindow(i)[1] ? 'done' : '';
       const mark = state === 'done' ? '✓' : state === 'active' ? '●' : '○';
       return `<li class="${state}"><span class="mark">${mark}</span><span>${i + 1}</span><span>${name}</span></li>`;
     }).join('');
   }
 
-  function sceneRaymarch(t) {
+  function sceneUniverse(t) {
     const gl = $('gl');
     gl.style.opacity = ease(span(t, 3.2, 3.7));
-    const e = ease(span(t, 7.9, 8.85));
+    const e = ease(span(t, SHOT.expand[0], SHOT.expand[1]));
     const rect = {
       x: lerp(PREVIEW.x, FULL.x, e), y: lerp(PREVIEW.y, FULL.y, e),
       w: lerp(PREVIEW.w, FULL.w, e), h: lerp(PREVIEW.h, FULL.h, e),
     };
     const r = 18 * (1 - e);
     gl.style.clipPath = `inset(${rect.y}px ${1280 - rect.x - rect.w}px ${720 - rect.y - rect.h}px ${rect.x}px round ${r}px)`;
-    const fade = lerp(1, .16, ease(span(t, 12.3, 13.6)));
-    // Camera starts wide for the preview, then dollies in once the frame goes full-screen.
-    const dist = lerp(32, 24, ease(span(t, 7.6, 12.6)));
-    draw({ t, stage: stageAt(t), fade, rect, dist });
+    const fade = lerp(1, .38, ease(span(t, SHOT.dim[0], SHOT.dim[1])));
+    draw({ t, stage: stageAt(t), fade, rect });
 
     const hud = $('hud');
-    hud.style.opacity = visible(t, 8.6, 12.5, .45);
+    hud.style.opacity = visible(t, SHOT.hud[0], SHOT.hud[1], .45);
     $('recDot').style.opacity = Math.floor(t * 2) % 2 === 0 ? 1 : .25;
     $('hudFrame').textContent = `frame ${String(Math.round(t * FPS)).padStart(4, '0')} / ${FPS * DURATION}`;
     const lt = $('lowerThird');
-    lt.style.opacity = visible(t, 9.3, 12.2, .5);
-    lt.style.transform = `translateY(${(1 - ease(span(t, 9.3, 9.9))) * 16}px)`;
+    lt.style.opacity = visible(t, SHOT.lowerThird[0], SHOT.lowerThird[1], .5);
+    lt.style.transform = `translateY(${(1 - ease(span(t, SHOT.lowerThird[0], SHOT.lowerThird[0] + .6))) * 16}px)`;
   }
 
   function sceneTitle(t) {
     $('s5').style.opacity = 1;
-    $('rail').style.opacity = 1 - visible(t, 7.9, 15.2, .6);
-    $('title').style.opacity = ease(span(t, 14.75, 15.4));
+    const T = SHOT.title;
+    $('rail').style.opacity = 1 - visible(t, SHOT.expand[0], T + .4, .6);
+    $('title').style.opacity = ease(span(t, T - .1, T + .55));
     const rise = (a) => `translateY(${(1 - ease(span(t, a, a + .7))) * 26}px)`;
-    [['pipe', 15.4], ['tagline', 15.8], ['url', 16.2], ['footnote', 16.6]].forEach(([id, a]) => {
+    [['pipe', T + .6], ['tagline', T + 1], ['url', T + 1.4], ['footnote', T + 1.8]].forEach(([id, a]) => {
       $(id).style.opacity = ease(span(t, a, a + .7));
       $(id).style.transform = rise(a);
     });
-    $('signalLine').style.transform = `scaleX(${ease(span(t, 15.0, 17.6))})`;
+    $('signalLine').style.transform = `scaleX(${ease(span(t, T + .2, T + 2.8))})`;
   }
 
   window.seek = function seek(t) {
     sceneBrief(t);
     sceneCode(t);
-    sceneRaymarch(t);
+    sceneUniverse(t);
     sceneTitle(t);
-    drawParticles(t, { t0: 12.35, t1: 14.85 });
+    drawParticles(t, SHOT.particles);
   };
 
   sizeCanvases();

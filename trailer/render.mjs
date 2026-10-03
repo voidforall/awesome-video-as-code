@@ -30,7 +30,7 @@ function arg(name, fallback) {
 }
 const SCALE = Number(arg('scale', '2'));
 // README teaser: the showpiece span only; a full-length GIF of shader footage is far too heavy.
-const TEASER = { start: 6.8, duration: 8.4, width: 720, fps: 10 };
+const TEASER = { start: 8.4, duration: 9.6, width: 720, fps: 10 };
 
 // Chrome picks a free port (--remote-debugging-port=0) and writes it to
 // DevToolsActivePort inside the profile, so concurrent Chromes never collide.

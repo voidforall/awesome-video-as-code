@@ -1,4 +1,4 @@
-// Particle morph: points spin off the accretion disk and reassemble into the
+// Particle morph: stars across the frame lift off and reassemble into the
 // exact glyphs of the DOM title. Positions are closed-form functions of t.
 (function () {
   const COUNT = 14000;
@@ -54,15 +54,14 @@
       const items = [];
       for (let i = 0; i < COUNT; i++) {
         const target = pts[Math.floor(hash(i, 1) * pts.length)];
-        // Start on the edge-on accretion disk: a thin ellipse around the hole.
+        // Start as stars scattered over the whole frame.
         const ang = hash(i, 2) * Math.PI * 2;
-        const rad = 110 + hash(i, 3) * 330;
-        const sx = 640 + Math.cos(ang) * rad;
-        const sy = 360 + Math.sin(ang) * rad * .16;
+        const sx = hash(i, 3) * 1280;
+        const sy = hash(i, 10) * 720;
         const end = target[0] < splitX ? INK : signal((target[0] - splitX) / (right - splitX));
         items.push({
           sx, sy, tx: target[0], ty: target[1],
-          ang, rad, burst: 40 + hash(i, 4) * 260, spin: 1.2 + hash(i, 5) * 1.8,
+          ang, drift: 12 + hash(i, 4) * 40, phase: hash(i, 5) * 6.283,
           start: hash(i, 6) < .18 ? STAR : signal(hash(i, 6)), end,
           delay: ((target[0] - 160) / 960) * .55 + hash(i, 7) * .2,
           size: .8 + hash(i, 8) * 1.1,
@@ -87,18 +86,17 @@
       ctx.globalCompositeOperation = 'lighter';
       const fade = 1 - clamp((t - t1) / .6);
       for (const p of model) {
-        // Keep orbiting the hole while the orbit loosens, like matter flung off the disk.
+        // Stars twinkle in place and drift slightly before being pulled into the glyphs.
         const b = easeOut((t - t0) / 1.0);
-        const swirl = p.ang + p.spin * b * (300 / p.rad);
-        const orbitR = p.rad + p.burst * b;
-        const bx = 640 + Math.cos(swirl) * orbitR;
-        const by = 360 + Math.sin(swirl) * orbitR * (.16 + .5 * b);
+        const swirl = p.ang;
+        const bx = p.sx + Math.cos(p.ang) * p.drift * b;
+        const by = p.sy + Math.sin(p.ang) * p.drift * b;
         const k = ease((t - t0 - .8 - p.delay) / 1.15);
         const arc = Math.sin(Math.PI * k) * p.arc;
         const x = bx + (p.tx - bx) * k - arc * Math.sin(swirl);
         const y = by + (p.ty - by) * k + arc * Math.cos(swirl);
         const c = mixRgb(p.start, p.end, k);
-        const born = clamp((t - t0) / .25);
+        const born = clamp((t - t0) / .5) * (.75 + .25 * Math.sin(t * 9 + p.phase));
         const alpha = born * fade * (.55 + .45 * k);
         const size = p.size * (1 + (1 - k) * .6);
         ctx.fillStyle = `rgba(${c[0] | 0},${c[1] | 0},${c[2] | 0},${alpha.toFixed(3)})`;
