@@ -1,9 +1,9 @@
 # Awesome Video as Code [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 <p align="center">
-  <a href="assets/trailer.mp4"><img src="assets/trailer-teaser.gif" width="720" alt="预告片片段：光线步进渲染的彩虹金属融球在圆环中环绕，炸裂成粒子，再重组为标题 Awesome Video as Code"></a>
+  <a href="assets/trailer.mp4"><img src="assets/trailer-teaser.gif" width="720" alt="预告片片段：引力把黑洞吸积盘弯折成透镜光环，画面铺满全屏，吸积盘化作粒子重组为标题 Awesome Video as Code"></a>
   <br>
-  <sub><a href="assets/trailer.mp4"><b>▶ 观看 2560×1440 · 60 fps 完整预告片</b></a> · 它本身就是 video as code：由 AI agent 写成 <a href="trailer/">HTML 与 GLSL 光线步进着色器</a>，再用<a href="trailer/render.mjs">零依赖脚本</a>驱动无头 Chrome 和 FFmpeg 渲染。</sub>
+  <sub><a href="assets/trailer.mp4"><b>▶ 观看 2560×1440 · 60 fps 完整预告片</b></a> · 它本身就是 video as code：由 AI agent 写成 <a href="trailer/">HTML 与 GLSL 黑洞着色器</a>，再用<a href="trailer/render.mjs">零依赖脚本</a>驱动无头 Chrome 和 FFmpeg 渲染。</sub>
 </p>
 
 > 精选用 AI agent 编写或指导代码来生成视频的工具、技能、生产管线、开源案例与研究。

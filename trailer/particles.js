@@ -1,8 +1,8 @@
-// Particle morph: points burst out of the raymarched blobs and reassemble into the
+// Particle morph: points spin off the accretion disk and reassemble into the
 // exact glyphs of the DOM title. Positions are closed-form functions of t.
 (function () {
   const COUNT = 14000;
-  const AMBER = [251, 191, 36], ROSE = [251, 113, 133], VIOLET = [167, 139, 250], INK = [248, 250, 252];
+  const GOLD = [253, 230, 138], AMBER = [251, 191, 36], ORANGE = [249, 115, 22], INK = [248, 250, 252], STAR = [191, 219, 254];
 
   // Deterministic [0, 1) hash of an integer (and a salt), so frames never depend on Math.random.
   function hash(i, salt) {
@@ -13,7 +13,7 @@
   const mixRgb = (a, b, k) => a.map((v, i) => v + (b[i] - v) * k);
   function signal(x) {
     const k = Math.min(1, Math.max(0, x)) * 2;
-    return k < 1 ? mixRgb(AMBER, ROSE, k) : mixRgb(ROSE, VIOLET, k - 1);
+    return k < 1 ? mixRgb(GOLD, AMBER, k) : mixRgb(AMBER, ORANGE, k - 1);
   }
 
   // Sample filled pixels of the title, laid out exactly like the DOM element.
@@ -54,15 +54,16 @@
       const items = [];
       for (let i = 0; i < COUNT; i++) {
         const target = pts[Math.floor(hash(i, 1) * pts.length)];
+        // Start on the edge-on accretion disk: a thin ellipse around the hole.
         const ang = hash(i, 2) * Math.PI * 2;
-        const rad = Math.sqrt(hash(i, 3)) * 230;
+        const rad = 110 + hash(i, 3) * 330;
         const sx = 640 + Math.cos(ang) * rad;
-        const sy = 360 + Math.sin(ang) * rad * .72;
+        const sy = 360 + Math.sin(ang) * rad * .16;
         const end = target[0] < splitX ? INK : signal((target[0] - splitX) / (right - splitX));
         items.push({
           sx, sy, tx: target[0], ty: target[1],
-          ang, burst: 120 + hash(i, 4) * 340, spin: (hash(i, 5) - .5) * 2.4,
-          start: signal(hash(i, 6)), end,
+          ang, rad, burst: 40 + hash(i, 4) * 260, spin: 1.2 + hash(i, 5) * 1.8,
+          start: hash(i, 6) < .18 ? STAR : signal(hash(i, 6)), end,
           delay: ((target[0] - 160) / 960) * .55 + hash(i, 7) * .2,
           size: .8 + hash(i, 8) * 1.1,
           arc: (hash(i, 9) - .5) * 60,
@@ -86,10 +87,12 @@
       ctx.globalCompositeOperation = 'lighter';
       const fade = 1 - clamp((t - t1) / .6);
       for (const p of model) {
+        // Keep orbiting the hole while the orbit loosens, like matter flung off the disk.
         const b = easeOut((t - t0) / 1.0);
-        const swirl = p.ang + p.spin * b;
-        const bx = p.sx + Math.cos(swirl) * p.burst * b;
-        const by = p.sy + Math.sin(swirl) * p.burst * b * .8;
+        const swirl = p.ang + p.spin * b * (300 / p.rad);
+        const orbitR = p.rad + p.burst * b;
+        const bx = 640 + Math.cos(swirl) * orbitR;
+        const by = 360 + Math.sin(swirl) * orbitR * (.16 + .5 * b);
         const k = ease((t - t0 - .8 - p.delay) / 1.15);
         const arc = Math.sin(Math.PI * k) * p.arc;
         const x = bx + (p.tx - bx) * k - arc * Math.sin(swirl);

@@ -12,11 +12,13 @@
     --ink: #f8fafc;
     --muted: #94a3b8;
     --dim: #64748b;
+    --gold: #fde68a;
     --amber: #fbbf24;
-    --rose: #fb7185;
-    --violet: #a78bfa;
+    --orange: #f97316;
+    --red: #ef4444;
+    --sky: #7dd3fc;
     --green: #34d399;
-    --signal: linear-gradient(90deg, var(--amber), var(--rose) 50%, var(--violet));
+    --signal: linear-gradient(90deg, var(--gold), var(--amber) 45%, var(--orange));
     --mono: "SF Mono", "JetBrains Mono", Menlo, monospace;
     --sans: -apple-system, "Inter", "Segoe UI", sans-serif;
   }
@@ -53,7 +55,7 @@
     padding: 24px 26px; font-size: 14.5px; line-height: 1.62; white-space: pre; overflow: hidden;
   }
   .code .cur { display: inline-block; width: 8px; height: 17px; background: var(--amber); vertical-align: -3px; }
-  .tok-k { color: var(--violet); } .tok-n { color: var(--rose); } .tok-c { color: var(--dim); } .tok-f { color: var(--green); }
+  .tok-k { color: var(--sky); } .tok-n { color: #fdba74; } .tok-c { color: var(--dim); } .tok-f { color: var(--green); }
   .preview-frame { position: absolute; left: 624px; top: 128px; width: 592px; height: 333px; border: 1px solid var(--line); border-radius: 18px; }
   .layers { position: absolute; left: 624px; top: 489px; width: 592px; font-size: 15px; }
   .layers ul { padding: 0; }
@@ -71,7 +73,8 @@
   .bl { left: 36px; bottom: 36px; border-left-width: 2px; border-bottom-width: 2px; }
   .br { right: 36px; bottom: 36px; border-right-width: 2px; border-bottom-width: 2px; }
   .hud-text { position: absolute; font-size: 15px; letter-spacing: .08em; color: rgba(248,250,252,.86); text-shadow: 0 1px 8px rgba(0,0,0,.6); }
-  .rec-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--rose); margin-right: 9px; }
+  .rec-dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; background: var(--red); margin-right: 9px; }
+  .hud-scrim { position: absolute; left: 0; right: 0; bottom: 0; height: 220px; background: linear-gradient(transparent, rgba(0,0,0,.72)); }
   .lower-third {
     position: absolute; left: 0; right: 0; bottom: 74px; text-align: center;
     font-family: var(--sans); font-size: 24px; font-weight: 600; letter-spacing: -.01em; text-shadow: 0 2px 18px rgba(0,0,0,.7);
@@ -100,7 +103,7 @@
   <section class="scene" id="s1">
     <p class="stage-label"><b>01</b> &nbsp;brief</p>
     <div class="term">
-      <div class="dots"><i style="background:var(--rose)"></i><i style="background:var(--amber)"></i><i style="background:var(--green)"></i></div>
+      <div class="dots"><i style="background:var(--red)"></i><i style="background:var(--amber)"></i><i style="background:var(--green)"></i></div>
       <p class="prompt"><span style="color:var(--muted)">&gt;</span> <span id="typed"></span><span class="caret" id="caret"></span></p>
       <p class="agent-line" id="agentLine"></p>
     </div>
@@ -116,12 +119,13 @@
   <canvas class="layer" id="gl"></canvas>
 
   <section class="scene" id="hud">
+    <div class="hud-scrim"></div>
     <i class="corner tl"></i><i class="corner tr"></i><i class="corner bl"></i><i class="corner br"></i>
     <p class="hud-text" style="left:84px;top:44px"><span class="rec-dot" id="recDot"></span>RENDER</p>
     <p class="hud-text" style="right:84px;top:44px">2560 × 1440 · 60 FPS</p>
     <p class="hud-text" style="left:84px;bottom:44px">every pixel = f(t)</p>
     <p class="hud-text" style="right:84px;bottom:44px" id="hudFrame">frame 0000 / 1080</p>
-    <p class="lower-third" id="lowerThird">One fragment shader. <span>No footage, no models, no assets.</span></p>
+    <p class="lower-third" id="lowerThird">Every pixel bends its own light ray. <span>One shader, no footage, no assets.</span></p>
   </section>
 
   <canvas class="layer" id="fx"></canvas>
@@ -133,7 +137,7 @@
       <span class="chip">agent</span><span class="arrow">→</span>
       <span class="chip">code</span><span class="arrow">→</span>
       <span class="chip">renderer</span><span class="arrow">→</span>
-      <span class="chip" style="border-color:var(--rose)">video</span>
+      <span class="chip" style="border-color:var(--amber)">video</span>
     </div>
     <p class="tagline" id="tagline">Frameworks, agent skills, MCP servers, pipelines, showcases &amp; research.</p>
     <p class="url" id="url"><span>github.com/voidforall/awesome-video-as-code</span></p>
@@ -141,7 +145,7 @@
     <div class="signal-line" id="signalLine"></div>
   </section>
 
-  <script src="raymarch.js"></script>
+  <script src="universe.js"></script>
   <script src="particles.js"></script>
   <script src="timeline.js"></script>
 </body>

@@ -1,13 +1,13 @@
 # Trailer
 
-The README trailer is plain HTML, CSS, and a GLSL raymarcher. Every visual is a pure function of time, exposed as `window.seek(t)`.
+The README trailer is plain HTML, CSS, and a GLSL black-hole shader. Every visual is a pure function of time, exposed as `window.seek(t)`.
 
 | File | Role |
 | --- | --- |
 | `index.html` | Layout and styles for the five shots |
 | `timeline.js` | `seek(t)`: typing, layer reveals, camera rect, HUD, title |
-| `raymarch.js` | WebGL2 fragment shader: SDF metaballs, smooth union, thin-film iridescence, reflections |
-| `particles.js` | 14,000 particles that burst from the render and land on the title's exact glyphs |
+| `universe.js` | WebGL2 fragment shader: starfield, nebula, accretion disk, and per-pixel gravitational lensing around a black hole |
+| `particles.js` | 14,000 particles that spin off the accretion disk and land on the title's exact glyphs |
 | `render.mjs` | Drives headless Chrome over the DevTools Protocol and encodes with FFmpeg |
 
 Render `assets/trailer.mp4` (2560×1440, 60 fps), `assets/trailer-teaser.gif`, and `assets/social-preview.png`:

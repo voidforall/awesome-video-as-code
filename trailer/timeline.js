@@ -5,30 +5,30 @@
   const DURATION = 18;
   window.TRAILER = { fps: FPS, duration: DURATION };
 
-  const BRIEF = 'show what an agent can render with nothing but code';
-  const AGENT_STEPS = ['planning 4 shots…', 'writing raymarcher.glsl…', 'scheduling 1080 frames…'];
+  const BRIEF = 'render a black hole bending light, with nothing but code';
+  const AGENT_STEPS = ['planning 4 shots…', 'writing blackhole.glsl…', 'tracing 3.7M light rays per frame…'];
 
-  // The code panel types the same techniques raymarch.js uses, one layer per chunk.
+  // The code panel types the same techniques universe.js uses, one layer per chunk.
   const CHUNKS = [
-    ['// 1 · shapes are signed distance fields',
-      'float blob(vec3 p, vec3 c, float r) {',
-      '  return length(p - c) - r;',
+    ['// 1 · stars: hashed points on the sky sphere',
+      'vec3 h = hash33(floor(dir * 80.));',
+      'float on = step(.7, h.y);',
+      'c += on * exp(-900. * dot(f, f));'],
+    ['// 2 · nebula: five octaves of fractal noise',
+      'float n = fbm(dir * 2.2);',
+      'float m = fbm(dir * 4.6 + n * 1.6);',
+      'c += mix(TEAL, DUST, m) * n * n * band;'],
+    ['// 3 · accretion disk: Keplerian shear',
+      'float w = 1.6 / pow(r, 1.5);',
+      'vec2 q = rotate(p.xz, -t * w);',
+      'c += heat(r) * fbm(q) * pow(doppler, 2.5);'],
+    ['// 4 · gravity bends every light ray',
+      'for (int i = 0; i < 320; i++) {',
+      '  vel += -1.5 * h2 * pos / pow(r, 5.) * dt;',
+      '  pos += vel * dt;',
       '}'],
-    ['// 2 · smooth-min melts them together',
-      'float smin(float a, float b, float k) {',
-      '  float h = clamp(.5 + .5*(b-a)/k, 0., 1.);',
-      '  return mix(b, a, h) - k*h*(1.-h);',
-      '}'],
-    ['// 3 · thin-film iridescence + fresnel',
-      'vec3 c = pal(.65*dot(n, -rd) + t*.05);',
-      'c *= .18 + .82*diff;',
-      'c += pow(1. - ndv, 3.) * rim;'],
-    ['// 4 · reflections, orbit ring, glow',
-      'vec3 r = reflect(rd, n);',
-      'c += studio(r) * fresnel;',
-      'c += march(p + n*.01, r) + glow;'],
   ].map((lines) => lines.join('\n'));
-  const LAYERS = ['SDF shapes', 'smooth union', 'iridescent light', 'reflections · ring · glow'];
+  const LAYERS = ['starfield', 'nebula', 'accretion disk', 'gravitational lensing'];
   const CODE_START = 3.35;
   const CHUNK_LEN = 1.05;
   const PREVIEW = { x: 624, y: 128, w: 592, h: 333 };
@@ -43,7 +43,7 @@
   const visible = (t, a, b, f = .4) => Math.min(ease(span(t, a, a + f)), 1 - ease(span(t, b - f, b)));
   const escapeHtml = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
-  const TOKEN = /(\/\/[^\n]*)|\b(float|vec3|return)\b|\b(\d*\.\d*|\d+)\b|([A-Za-z_]\w*)(?=\()/g;
+  const TOKEN = /(\/\/[^\n]*)|\b(float|vec2|vec3|for|int|return)\b|\b(\d*\.\d*|\d+)\b|([A-Za-z_]\w*)(?=\()/g;
   function highlight(src) {
     let out = '', last = 0;
     for (const m of src.matchAll(TOKEN)) {
@@ -58,7 +58,7 @@
   const chunkWindow = (i) => [CODE_START + i * CHUNK_LEN, CODE_START + (i + 1) * CHUNK_LEN - .2];
   const stageAt = (t) => CHUNKS.reduce((s, _, i) => s + ease(span(t, chunkWindow(i)[1], chunkWindow(i)[1] + .45)), 0);
 
-  const draw = window.createRaymarcher($('gl'));
+  const draw = window.createUniverse($('gl'));
   const drawParticles = window.createParticles($('fx'), $('title'));
 
   function sizeCanvases() {
@@ -106,8 +106,10 @@
     };
     const r = 18 * (1 - e);
     gl.style.clipPath = `inset(${rect.y}px ${1280 - rect.x - rect.w}px ${720 - rect.y - rect.h}px ${rect.x}px round ${r}px)`;
-    const fade = lerp(1, .2, ease(span(t, 12.3, 13.6)));
-    draw({ t, stage: stageAt(t), fade, rect });
+    const fade = lerp(1, .16, ease(span(t, 12.3, 13.6)));
+    // Camera starts wide for the preview, then dollies in once the frame goes full-screen.
+    const dist = lerp(32, 24, ease(span(t, 7.6, 12.6)));
+    draw({ t, stage: stageAt(t), fade, rect, dist });
 
     const hud = $('hud');
     hud.style.opacity = visible(t, 8.6, 12.5, .45);
