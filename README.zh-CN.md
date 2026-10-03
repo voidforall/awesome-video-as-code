@@ -1,7 +1,9 @@
 # Awesome Video as Code [![Awesome](https://awesome.re/badge.svg)](https://awesome.re)
 
 <p align="center">
-  <img src="assets/header.svg" width="600" alt="从代码提示流向渲染视频画面的胶片">
+  <a href="assets/trailer.mp4"><img src="assets/trailer.gif" width="720" alt="预告片：agent 接收需求，编写可逐帧定位的 HTML 动画，再由无头 Chrome 逐帧渲染为视频"></a>
+  <br>
+  <sub>这段预告片本身就是 video as code：由 AI agent 写成<a href="trailer/index.html">一个 HTML 页面</a>，再用<a href="trailer/render.mjs">零依赖脚本</a>驱动无头 Chrome 和 FFmpeg 渲染。</sub>
 </p>
 
 > 精选用 AI agent 编写或指导代码来生成视频的工具、技能、生产管线、开源案例与研究。
@@ -110,4 +112,4 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 
 ## 参与贡献
 
-欢迎贡献。提交资源前，请先阅读[贡献指南](contributing.md)。
+欢迎贡献。提交资源前，请先阅读[贡献指南](contributing.md)。如果这个列表帮你省下了搜索时间，点个 star 能让更多人找到它。
