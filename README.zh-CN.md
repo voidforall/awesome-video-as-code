@@ -21,6 +21,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [生产管线](#生产管线)
 - [开源案例](#开源案例)
 - [研究](#研究)
+- [基准评测](#基准评测)
 - [学习资料](#学习资料)
 - [相关列表](#相关列表)
 
@@ -34,6 +35,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 | 给 agent 安装专门的视频制作工作流 | [Agent 技能与工具](#agent-技能与工具) |
 | 加入音频、字幕、素材或自动渲染 | [生产管线](#生产管线) |
 | 从公开源码的完整项目中学习 | [开源案例](#开源案例) |
+| 评测 agent 用代码制作视频的能力 | [基准评测](#基准评测) |
 
 核心路径是 **brief → agent → 可执行视觉代码 → 确定性渲染器 → 视频文件**。生成式视频 API、素材拼接和录屏属于相邻路径，不是本列表的主要范围。
 
@@ -93,6 +95,16 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [Training and Agentic Inference Strategies for LLM-Based Manim Animation Generation](https://arxiv.org/abs/2604.18364) - 研究文本到 Manim 系统的监督训练、强化学习、渲染器反馈、文档检索和评测方法。
 - [LLM2Manim: Pedagogy-Aware AI Generation of STEM Animations](https://arxiv.org/abs/2604.05266) - 使用受约束 prompt、符号一致性、局部重生成、旁白和专家复核的人机协同管线。
 - [PhysicsSolutionAgent](https://arxiv.org/abs/2601.13453) - 生成多分钟 Manim 讲解，并通过定量规则和视觉模型反馈迭代检查的 agent。
+
+## 基准评测
+
+- [VibeVideoBench](https://github.com/vibevideobench/VibeVideoBench) - 包含 12 类、239 个中英双语任务，要求多模态 agent 仅用代码产出带声音的完整视频，并以任务专属评分细则和 VLM 评审组打分的基准。
+- [Code2Video Bench](https://www.heygen.com/research/introducing-code2video-benchmark) - HeyGen 与 Kaggle 推出的基准，由 agent 将设计简报写成 HyperFrames 构图，并通过两两对比的 Elo 公开排行。
+- [PRISM](https://arxiv.org/abs/2605.19382) - 包含 10,372 组指令-代码对的程序化知识可视化视频基准，将代码可执行性与整段动画的空间布局正确性分开评估。
+- [ManiBench](https://github.com/nabin2004/ManiBench) - 面向 Manim CE 代码生成的基准，衡量可执行性、过时 API 幻觉，以及预期叙事与实际渲染动画之间的偏离。
+- [Code2Video and MMMC](https://github.com/showlab/Code2Video) - 由规划、编码、评审三个 agent 生成 Manim 教学视频的框架，配套 MMMC 基准和 TeachQuiz 知识传递指标。
+- [TheoremExplainBench](https://arxiv.org/abs/2502.19400) - 覆盖 240 个 STEM 定理、以五项自动指标评估规划与编码 agent 生成的长篇 Manim 讲解视频的基准。
+- [Animation2Code](https://anya-ji.github.io/animation2code-website) - 包含 1,069 段网页动画视频及其 HTML、CSS、JavaScript 实现，用于评估模型从视频还原动画代码能力的基准。
 
 ## 学习资料
 

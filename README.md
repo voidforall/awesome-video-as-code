@@ -21,6 +21,7 @@ Video as code treats executable source as the visual medium: an agent writes HTM
 - [Production Pipeline](#production-pipeline)
 - [Showcases](#showcases)
 - [Research](#research)
+- [Benchmarks](#benchmarks)
 - [Learning](#learning)
 
 ## Start Here
@@ -36,6 +37,7 @@ Video as code treats executable source as the visual medium: an agent writes HTM
     <tr><td>Give an agent a specialized video-making workflow</td><td>Agent Skills and Tooling</td></tr>
     <tr><td>Add audio, captions, assets, or automated rendering</td><td>Production Pipeline</td></tr>
     <tr><td>Learn from complete projects with public source code</td><td>Showcases</td></tr>
+    <tr><td>Measure how well agents make videos with code</td><td>Benchmarks</td></tr>
   </tbody>
 </table>
 
@@ -102,6 +104,16 @@ Projects in this section publish source code, prompts, or production notes that 
 - [Training and Agentic Inference Strategies for LLM-Based Manim Animation Generation](https://arxiv.org/abs/2604.18364) - Code-rendered study of supervised training, reinforcement learning, renderer feedback, documentation retrieval, and evaluation for text-to-Manim systems.
 - [LLM2Manim: Pedagogy-Aware AI Generation of STEM Animations](https://arxiv.org/abs/2604.05266) - Code-rendered human-in-the-loop pipeline using constrained prompts, symbol consistency, targeted regeneration, narration, and expert review.
 - [PhysicsSolutionAgent](https://arxiv.org/abs/2601.13453) - Code-rendered agent that produces multi-minute Manim explanations and iteratively checks them with quantitative rules and visual-model feedback.
+
+## Benchmarks
+
+- [VibeVideoBench](https://github.com/vibevideobench/VibeVideoBench) - Code-rendered benchmark of 239 bilingual tasks across 12 categories in which multimodal agents must produce finished videos with sound using only code, scored by task-specific rubrics and VLM judge panels.
+- [Code2Video Bench](https://www.heygen.com/research/introducing-code2video-benchmark) - Code-rendered benchmark from HeyGen and Kaggle in which agents turn design briefs into HyperFrames compositions, ranked by pairwise Elo comparisons on a public leaderboard.
+- [PRISM](https://arxiv.org/abs/2605.19382) - Code-rendered benchmark of 10,372 instruction-code pairs for programmatic knowledge-visualization videos that separates execution success from spatial-layout correctness across full animations.
+- [ManiBench](https://github.com/nabin2004/ManiBench) - Code-rendered benchmark for Manim CE code generation that measures executability, deprecated-API hallucinations, and drift between the intended narrative and the rendered animation.
+- [Code2Video and MMMC](https://github.com/showlab/Code2Video) - Code-rendered planner-coder-critic agent for Manim educational videos, paired with the MMMC benchmark and the TeachQuiz knowledge-transfer metric.
+- [TheoremExplainBench](https://arxiv.org/abs/2502.19400) - Code-rendered benchmark of 240 STEM theorems for evaluating long-form Manim explanation videos from planning and coding agents with five automatic metrics.
+- [Animation2Code](https://anya-ji.github.io/animation2code-website) - Code-rendered benchmark of 1,069 web animation videos paired with HTML, CSS, and JavaScript for evaluating how well models reconstruct animation code from video.
 
 ## Learning
 
