@@ -121,6 +121,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [Awesome Claude 5.5 Videos](https://github.com/athemeroy/awesome-claude-5-5-videos) - 记录 prompt、工具、制作证据和模型版本的来源链接目录。
 - [Awesome Creative Coding](https://github.com/terkelg/awesome-creative-coding) - 跨视觉媒介的创意编程工具、框架、书籍、教程和社区。
 - [Awesome Web Animation](https://github.com/sergey-pimenov/awesome-web-animation) - 面向 SVG、CSS、Canvas、JavaScript 和 React 的浏览器动画库与学习资料。
+- [Awesome Code-Generated Video](https://github.com/Daryl-GSJ/awesome-code-generated-video) - 收录代码生成动画与视频相关论文、基准、数据集和工具的列表。
 
 ## 参与贡献
 
