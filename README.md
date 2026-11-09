@@ -130,6 +130,7 @@ Projects in this section publish source code, prompts, or production notes that 
 - [Awesome Claude 5.5 Videos](https://github.com/athemeroy/awesome-claude-5-5-videos) - Source-linked catalog that records prompts, tools, production evidence, and model variants.
 - [Awesome Creative Coding](https://github.com/terkelg/awesome-creative-coding) - Creative-coding tools, frameworks, books, tutorials, and communities across visual media.
 - [Awesome Web Animation](https://github.com/sergey-pimenov/awesome-web-animation) - Browser animation libraries and learning resources for SVG, CSS, Canvas, JavaScript, and React.
+- [AgentsUses Motion Graphics](https://agentsuses.com/c/motion-graphics/) - Hand-checked directory of agent skills for code-rendered video, where each entry links its source repository and gives stall steps, a starter prompt, an automated safety-scan note and, where available, credited result videos.
 
 ## Contributing
 
