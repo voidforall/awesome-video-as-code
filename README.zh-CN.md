@@ -64,6 +64,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [Motion Skills](https://github.com/iart-ai/motion-skills) - 面向动态文字、讲解视频、数据可视化、短视频、WebGL 和 Manim 的可安装技能包。
 - [Claude Motion Design](https://github.com/howseen-ai/claude-motion-design) - 使用 HTML 制作动效并通过 Playwright 和 FFmpeg 渲染的技能与示例。
 - [Videowright](https://github.com/scosman/videowright) - 让 coding agent 根据结构化计划与版本控制素材制作动画讲解视频的工作流。
+- [Video Shotcraft](https://github.com/Vincentwei1021/video-shotcraft) - 面向 Claude Code 和 Codex 的技能，截取真实产品页面、按镜头配方库编排分镜，并将产品宣传片渲染为可编辑的 Remotion 工程。
 
 ## MCP 服务与集成
 
