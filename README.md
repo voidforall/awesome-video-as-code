@@ -73,6 +73,7 @@ The core path is **brief → agent → executable visual code → deterministic 
 - [Motion Skills](https://github.com/iart-ai/motion-skills) - Code-rendered installable skills for kinetic type, explainers, data visualization, short-form video, WebGL, and Manim.
 - [Claude Motion Design](https://github.com/howseen-ai/claude-motion-design) - Code-rendered skill and examples for creating motion graphics in HTML and rendering them with Playwright and FFmpeg.
 - [Videowright](https://github.com/scosman/videowright) - Code-rendered coding-agent workflow for assembling animated explainer videos from structured plans and source-controlled assets.
+- [Video Shotcraft](https://github.com/Vincentwei1021/video-shotcraft) - Code-rendered Claude Code and Codex skill that captures real product pages, storyboards them from a library of shot recipes, and renders product promos as editable Remotion projects.
 
 ## MCP Servers and Integrations
 
