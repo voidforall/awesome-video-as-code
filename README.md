@@ -99,6 +99,7 @@ Projects in this section publish source code, prompts, or production notes that 
 - [ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) - Code-rendered starter project with p5.js rendering, a hand-painted character, reusable emotional performances, and coding-agent instructions.
 - [Lemo Opuscar](https://github.com/lemomo-ai/lemo-opuscar) - Code-rendered collection of short films paired with reusable visual-style prompts and directing guidance.
 - [Zero to Product Video Hero](https://github.com/specstoryai/zero-to-product-video-hero) - Code-rendered Remotion project publishing the composition source, output, production plan, and agent conversation for a product video.
+- [MG Styles 15](https://github.com/Vincentwei1021/mg-styles-15) - Code-rendered gallery of fifteen short motion-design films, each published with its full prompt, frame-by-frame web source, code-synthesized soundtrack, and a shared headless-Chrome renderer.
 
 ## Research
 
