@@ -90,6 +90,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [ClaudeAnimationBase](https://github.com/JohnHeibel/ClaudeAnimationBase) - 基于 p5.js 的代码渲染起步项目，包含手绘角色、可复用的情绪表演和 coding agent 指令。
 - [Lemo Opuscar](https://github.com/lemomo-ai/lemo-opuscar) - 代码制作的短片合集，并公开了可复用的视觉风格 prompt 和导演指导。
 - [Zero to Product Video Hero](https://github.com/specstoryai/zero-to-product-video-hero) - 公开产品视频构图源码、成片、制作计划和 agent 对话的 Remotion 项目。
+- [MG Styles 15](https://github.com/Vincentwei1021/mg-styles-15) - 15 种动效设计风格的短片合集，每部都公开完整 prompt、逐帧绘制的网页源码和代码合成的配乐，并附共用的无头 Chrome 渲染器。
 
 ## 研究
 
