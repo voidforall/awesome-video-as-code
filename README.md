@@ -74,6 +74,7 @@ The core path is **brief → agent → executable visual code → deterministic 
 - [Claude Motion Design](https://github.com/howseen-ai/claude-motion-design) - Code-rendered skill and examples for creating motion graphics in HTML and rendering them with Playwright and FFmpeg.
 - [Videowright](https://github.com/scosman/videowright) - Code-rendered coding-agent workflow for assembling animated explainer videos from structured plans and source-controlled assets.
 - [Video Shotcraft](https://github.com/Vincentwei1021/video-shotcraft) - Code-rendered Claude Code and Codex skill that captures real product pages, storyboards them from a library of shot recipes, and renders product promos as editable Remotion projects.
+- [Anidoodle](https://github.com/alexgreensh/anidoodle) - Code-rendered agent skill and plugin for hand-drawn illustrations, loops, launch videos, and scored films in dozens of styles, with code-synthesized music and Playwright, Remotion, or HyperFrames output.
 
 ## MCP Servers and Integrations
 
