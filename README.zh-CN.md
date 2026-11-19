@@ -67,6 +67,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [Video Shotcraft](https://github.com/Vincentwei1021/video-shotcraft) - 面向 Claude Code 和 Codex 的技能，截取真实产品页面、按镜头配方库编排分镜，并将产品宣传片渲染为可编辑的 Remotion 工程。
 - [Anidoodle](https://github.com/alexgreensh/anidoodle) - 以代码绘制多种手绘风格插画、循环动画、发布视频和配乐短片的 agent 技能与插件，音乐由代码合成，可输出到 Playwright、Remotion 或 HyperFrames。
 - [brag](https://github.com/latent-spaces/brag) - 把刚完成的项目做成发布短片的 agent 技能：规划叙事、撰写构图简报，再用 HyperFrames 渲染，并附带配乐和可选旁白。
+- [OpenMontage](https://github.com/OpenMontageInc/OpenMontage) - 由 agent 编排的视频生产系统，以 YAML 管线、技能文件和 Python 工具调用 Remotion、HyperFrames 与 FFmpeg，基于档案素材、图库素材或可选的生成式素材合成画面。
 
 ## MCP 服务与集成
 
