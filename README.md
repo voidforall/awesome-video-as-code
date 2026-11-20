@@ -77,6 +77,7 @@ The core path is **brief → agent → executable visual code → deterministic 
 - [Anidoodle](https://github.com/alexgreensh/anidoodle) - Code-rendered agent skill and plugin for hand-drawn illustrations, loops, launch videos, and scored films in dozens of styles, with code-synthesized music and Playwright, Remotion, or HyperFrames output.
 - [brag](https://github.com/latent-spaces/brag) - Code-rendered agent skill that turns a finished project into a short launch video by planning the story, writing a composition brief, and rendering it with HyperFrames, bundled music, and optional narration.
 - [OpenMontage](https://github.com/OpenMontageInc/OpenMontage) - Hybrid agent-orchestrated production system whose YAML pipelines, skill files, and Python tools compose scenes with Remotion, HyperFrames, and FFmpeg from archival footage, stock media, or optional generated assets.
+- [ffmpeg-skill](https://github.com/kajisho5/ffmpeg-skill) - Pipeline skill and MCP server giving coding agents local FFmpeg tools with machine-readable contracts for cutting, captions, reframing, loudness, delivery checks, and platform exports.
 
 ## MCP Servers and Integrations
 
