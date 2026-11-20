@@ -85,6 +85,7 @@ The core path is **brief → agent → executable visual code → deterministic 
 - [OpenVidStudio](https://github.com/AnayDhawan/openvidstudio) - Hybrid MCP workflow that captures a real application with Playwright and composes product footage with Remotion.
 - [mimic-mcp](https://github.com/pouyashahrdami/mimic-mcp) - Hybrid MCP server that analyzes a reference reel, scaffolds a Remotion project from supplied footage, renders it, and performs a visual review.
 - [Blender MCP](https://github.com/ahujasid/mcp-for-blender) - Code-rendered community integration that lets language models control Blender scenes and render conventional 3D animation.
+- [OpenChatCut](https://github.com/0xsline/OpenChatCut) - Hybrid local-first conversational video editor whose MCP server and agent skills let coding agents edit a multitrack timeline through reviewable draft sessions before Remotion and FFmpeg export.
 
 ## Production Pipeline
 

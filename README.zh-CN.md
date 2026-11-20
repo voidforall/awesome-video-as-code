@@ -76,6 +76,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 - [OpenVidStudio](https://github.com/AnayDhawan/openvidstudio) - 用 Playwright 捕获真实应用，并通过 Remotion 合成产品演示的混合型 MCP 工作流。
 - [mimic-mcp](https://github.com/pouyashahrdami/mimic-mcp) - 分析参考视频、从给定素材搭建 Remotion 项目、渲染并进行视觉复核的混合型 MCP 服务。
 - [Blender MCP](https://github.com/ahujasid/mcp-for-blender) - 允许语言模型控制 Blender 场景并渲染传统 3D 动画的社区集成。
+- [OpenChatCut](https://github.com/0xsline/OpenChatCut) - 本地优先的对话式视频编辑器，通过 MCP 服务和 agent 技能让 coding agent 以可审阅的草稿会话编辑多轨时间线，再用 Remotion 和 FFmpeg 导出。
 
 ## 生产管线
 
