@@ -1,0 +1,16 @@
+{
+  "name": "awesome-video-as-code-diagrams",
+  "private": true,
+  "type": "module",
+  "description": "Renders the README decision trees from JSON specs to hand-drawn Excalidraw SVGs.",
+  "scripts": {
+    "render": "node render.mjs"
+  },
+  "dependencies": {
+    "@excalidraw/excalidraw": "0.18.1",
+    "esbuild": "0.25.5",
+    "playwright": "1.63.0",
+    "react": "19.1.0",
+    "react-dom": "19.1.0"
+  }
+}

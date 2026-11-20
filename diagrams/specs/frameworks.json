@@ -1,0 +1,52 @@
+{
+  "title": { "en": "Choosing a framework or renderer", "zh": "如何选择框架与渲染器" },
+  "root": {
+    "q": { "en": "What is the video\nmostly made of?", "zh": "视频主要由\n什么构成？" },
+    "children": [
+      {
+        "edge": { "en": "math or\ntechnical diagrams", "zh": "数学或\n技术图解" },
+        "node": {
+          "q": { "en": "Which language?", "zh": "用什么语言？" },
+          "children": [
+            { "edge": "Python", "node": { "tools": ["Manim Community"] } },
+            {
+              "edge": "TypeScript",
+              "node": { "tools": ["Motion Canvas"], "note": { "en": "synced to voice-over", "zh": "与旁白同步" } }
+            }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "UI, type and\nmotion graphics", "zh": "界面、文字\n与动效" },
+        "node": {
+          "q": { "en": "How will the\nagent write it?", "zh": "agent 用什么\n方式来写？" },
+          "children": [
+            {
+              "edge": { "en": "React", "zh": "React 组件" },
+              "node": { "tools": ["Remotion"], "note": { "en": "check its license", "zh": "注意许可证" } }
+            },
+            {
+              "edge": { "en": "plain HTML", "zh": "普通 HTML" },
+              "node": { "tools": ["HyperFrames"] }
+            },
+            {
+              "edge": { "en": "templates\nin an app", "zh": "应用内模板" },
+              "node": { "tools": ["Revideo"] }
+            }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "generative\nart or 3D", "zh": "生成艺术\n或 3D" },
+        "node": {
+          "tools": ["p5.js", "Three.js"],
+          "note": { "en": "capture in a browser renderer", "zh": "用浏览器渲染器录制" }
+        }
+      },
+      {
+        "edge": { "en": "existing\nfootage", "zh": "现有素材" },
+        "node": { "tools": ["MoviePy"], "kind": "hybrid" }
+      }
+    ]
+  }
+}

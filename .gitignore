@@ -1,2 +1,4 @@
 .research/
 
+diagrams/node_modules/
+diagrams/.build/
