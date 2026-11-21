@@ -56,6 +56,13 @@ The core path is **brief → agent → executable visual code → deterministic 
 
 ## Frameworks and Renderers
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/frameworks.en.dark.svg">
+    <img src="assets/diagrams/frameworks.en.svg" width="100%" alt="Decision tree: What is the video mostly made of? Math or technical diagrams leads to a language choice: Python for Manim Community, or TypeScript for Motion Canvas when animation is synced to voice-over. UI, type and motion graphics leads to how the agent will write it: React for Remotion (check its license), plain HTML for HyperFrames, or templates in an app for Revideo. Generative art or 3D leads to p5.js or Three.js captured in a browser renderer. Existing footage leads to MoviePy, a hybrid tool.">
+  </picture>
+</p>
+
 - [Remotion](https://github.com/remotion-dev/remotion) - Code-rendered React framework, Studio, player, and rendering stack for programmatic video; source-available under the Remotion License.
 - [HyperFrames](https://github.com/heygen-com/hyperframes) - Code-rendered HTML video framework with seekable animation adapters and deterministic Chrome-and-FFmpeg rendering.
 - [Motion Canvas](https://github.com/motion-canvas/motion-canvas) - Code-rendered TypeScript framework and real-time editor for explanatory vector animations synchronized with voice-over.
