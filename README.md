@@ -74,6 +74,13 @@ The core path is **brief → agent → executable visual code → deterministic 
 
 ## Agent Skills and Tooling
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/skills.en.dark.svg">
+    <img src="assets/diagrams/skills.en.svg" width="100%" alt="Decision tree: What should the skill give your agent? Knowing a framework you already use leads to Remotion Agent Skills for Remotion or HyperFrames Skills for HyperFrames. Making one kind of video well leads to Video Shotcraft for promos from product pages, brag for a launch video for a repo, Motion Skills, Claude Motion Design, or Videowright for explainers and motion graphics, and Anidoodle for hand-drawn animation. A full studio with voice and footage leads to the hybrid Claude Code Video Toolkit or OpenMontage, which may call paid APIs. Editing and exporting existing video leads to the pipeline tool ffmpeg-skill.">
+  </picture>
+</p>
+
 - [Remotion Agent Skills](https://github.com/remotion-dev/skills) - Code-rendered first-party agent instructions for composition, animation, audio, captions, transitions, and rendering with Remotion.
 - [HyperFrames Skills](https://github.com/heygen-com/hyperframes/tree/main/skills) - Code-rendered first-party skills for planning, creating, checking, previewing, editing, and rendering HyperFrames projects.
 - [Claude Code Video Toolkit](https://github.com/digitalsamba/claude-code-video-toolkit) - Hybrid agent workspace combining Remotion, FFmpeg, browser recording, transcription, voice, music, and generated assets.
