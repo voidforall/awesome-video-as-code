@@ -112,6 +112,13 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 
 ## 基准评测
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/benchmarks.zh.dark.svg">
+    <img src="assets/diagrams/benchmarks.zh.svg" width="100%" alt="决策树：想评测什么？评测 agent 做出完整视频时看评判方式：评分细则与 VLM 评审选 VibeVideoBench，两两对比 Elo 选 Code2Video Bench。评测模型编写动画代码时看目标：Manim 方向最关心 API 正确性选 ManiBench，关心长篇讲解选 TheoremExplainBench，关心教学效果选 Code2Video and MMMC；空间布局选 PRISM。从视频还原代码选 Animation2Code。">
+  </picture>
+</p>
+
 - [VibeVideoBench](https://github.com/vibevideobench/VibeVideoBench) - 包含 12 类、239 个中英双语任务，要求多模态 agent 仅用代码产出带声音的完整视频，并以任务专属评分细则和 VLM 评审组打分的基准。
 - [Code2Video Bench](https://www.heygen.com/research/introducing-code2video-benchmark) - HeyGen 与 Kaggle 推出的基准，由 agent 将设计简报写成 HyperFrames 构图，并通过两两对比的 Elo 公开排行。
 - [PRISM](https://arxiv.org/abs/2605.19382) - 包含 10,372 组指令-代码对的程序化知识可视化视频基准，将代码可执行性与整段动画的空间布局正确性分开评估。
