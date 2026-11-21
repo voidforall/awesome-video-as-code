@@ -121,6 +121,13 @@ Projects in this section publish source code, prompts, or production notes that 
 
 ## Benchmarks
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/benchmarks.en.dark.svg">
+    <img src="assets/diagrams/benchmarks.en.svg" width="100%" alt="Decision tree: What do you want to measure? Agents making finished videos depends on how videos are judged: VibeVideoBench for rubrics and VLM judges, Code2Video Bench for pairwise Elo. Models writing animation code depends on the target: for Manim, ManiBench when API correctness matters most, TheoremExplainBench for long-form explanations, and Code2Video and MMMC for teaching effect; for spatial layout, PRISM. Rebuilding code from video leads to Animation2Code.">
+  </picture>
+</p>
+
 - [VibeVideoBench](https://github.com/vibevideobench/VibeVideoBench) - Code-rendered benchmark of 239 bilingual tasks across 12 categories in which multimodal agents must produce finished videos with sound using only code, scored by task-specific rubrics and VLM judge panels.
 - [Code2Video Bench](https://www.heygen.com/research/introducing-code2video-benchmark) - Code-rendered benchmark from HeyGen and Kaggle in which agents turn design briefs into HyperFrames compositions, ranked by pairwise Elo comparisons on a public leaderboard.
 - [PRISM](https://arxiv.org/abs/2605.19382) - Code-rendered benchmark of 10,372 instruction-code pairs for programmatic knowledge-visualization videos that separates execution success from spatial-layout correctness across full animations.
