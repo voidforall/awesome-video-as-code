@@ -47,6 +47,13 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 
 ## 框架与渲染器
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/frameworks.zh.dark.svg">
+    <img src="assets/diagrams/frameworks.zh.svg" width="100%" alt="决策树：视频主要由什么构成？数学或技术图解时，再看用什么语言：Python 选 Manim Community，TypeScript 选 Motion Canvas（适合与旁白同步）。界面、文字与动效时，再看 agent 用什么方式来写：React 组件选 Remotion（注意许可证），普通 HTML 选 HyperFrames，应用内模板选 Revideo。生成艺术或 3D 选 p5.js 或 Three.js，并用浏览器渲染器录制。处理现有素材选混合管线工具 MoviePy。">
+  </picture>
+</p>
+
 - [Remotion](https://github.com/remotion-dev/remotion) - 基于 React 的代码渲染框架，包含 Studio、播放器和程序化视频渲染工具；采用 source-available 的 Remotion License。
 - [HyperFrames](https://github.com/heygen-com/hyperframes) - 面向 HTML 视频的代码渲染框架，支持可 seek 动画适配器，以及基于 Chrome 和 FFmpeg 的确定性渲染。
 - [Motion Canvas](https://github.com/motion-canvas/motion-canvas) - TypeScript 代码渲染框架与实时编辑器，适合制作与旁白同步的矢量讲解动画。
