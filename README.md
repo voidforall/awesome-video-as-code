@@ -96,6 +96,13 @@ The core path is **brief → agent → executable visual code → deterministic 
 
 ## Production Pipeline
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/pipeline.en.dark.svg">
+    <img src="assets/diagrams/pipeline.en.svg" width="100%" alt="Decision tree: Which step of the pipeline do you need? Encoding, mixing, or converting depends on where it runs: FFmpeg on the command line or a server, ffmpeg.wasm in the browser. Captions from speech depend on whether you need word-level timing: Whisper if not, WhisperX if so. Handing the timeline to an editor leads to OpenTimelineIO.">
+  </picture>
+</p>
+
 - [FFmpeg](https://ffmpeg.org/) - Pipeline toolkit for encoding, muxing, filtering, audio mixing, probing, and format conversion.
 - [OpenTimelineIO](https://github.com/AcademySoftwareFoundation/OpenTimelineIO) - Pipeline interchange format and API for editorial timelines, clips, tracks, transitions, and adapters.
 - [Whisper](https://github.com/openai/whisper) - Pipeline speech-recognition model and reference implementation for producing transcripts for subtitle workflows.
