@@ -1,0 +1,54 @@
+{
+  "title": { "en": "Choosing an agent skill or toolkit", "zh": "如何选择 agent 技能与工具" },
+  "root": {
+    "q": { "en": "What should the\nskill give your agent?", "zh": "想让技能给 agent\n带来什么？" },
+    "children": [
+      {
+        "edge": { "en": "know a framework\nI already use", "zh": "掌握我已在用\n的框架" },
+        "node": {
+          "q": { "en": "Which framework?", "zh": "哪个框架？" },
+          "children": [
+            { "edge": "Remotion", "node": { "tools": ["Remotion Agent Skills"] } },
+            { "edge": "HyperFrames", "node": { "tools": ["HyperFrames Skills"] } }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "make one kind\nof video well", "zh": "做好某一类\n视频" },
+        "node": {
+          "q": { "en": "Which kind?", "zh": "哪一类？" },
+          "children": [
+            {
+              "edge": { "en": "promo from\nproduct pages", "zh": "基于产品页面\n的宣传片" },
+              "node": { "tools": ["Video Shotcraft"] }
+            },
+            {
+              "edge": { "en": "launch video\nfor a repo", "zh": "为项目做\n发布短片" },
+              "node": { "tools": ["brag"] }
+            },
+            {
+              "edge": { "en": "explainers and\nmotion graphics", "zh": "讲解与动效" },
+              "node": { "tools": ["Motion Skills", "Claude Motion Design", "Videowright"] }
+            },
+            {
+              "edge": { "en": "hand-drawn\nanimation", "zh": "手绘动画" },
+              "node": { "tools": ["Anidoodle"] }
+            }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "a full studio with\nvoice and footage", "zh": "带配音与素材的\n完整工作室" },
+        "node": {
+          "tools": ["Claude Code Video Toolkit", "OpenMontage"],
+          "kind": "hybrid",
+          "note": { "en": "may call paid APIs", "zh": "可能调用付费 API" }
+        }
+      },
+      {
+        "edge": { "en": "edit and export\nexisting video", "zh": "剪辑与导出\n现有视频" },
+        "node": { "tools": ["ffmpeg-skill"], "kind": "pipeline" }
+      }
+    ]
+  }
+}

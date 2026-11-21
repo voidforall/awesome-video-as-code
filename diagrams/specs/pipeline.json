@@ -1,0 +1,32 @@
+{
+  "title": { "en": "Choosing a production pipeline tool", "zh": "如何选择生产管线工具" },
+  "root": {
+    "q": { "en": "Which step of the\npipeline do you need?", "zh": "需要管线中的\n哪一步？" },
+    "children": [
+      {
+        "edge": { "en": "encode, mix\nor convert", "zh": "编码、混音\n或转换" },
+        "node": {
+          "q": { "en": "Where does\nit run?", "zh": "在哪里运行？" },
+          "children": [
+            { "edge": { "en": "CLI or server", "zh": "命令行或服务器" }, "node": { "tools": ["FFmpeg"], "kind": "pipeline" } },
+            { "edge": { "en": "in the browser", "zh": "浏览器内" }, "node": { "tools": ["ffmpeg.wasm"], "kind": "pipeline" } }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "captions\nfrom speech", "zh": "从语音\n生成字幕" },
+        "node": {
+          "q": { "en": "Need word-level\ntiming?", "zh": "需要逐词\n时间轴吗？" },
+          "children": [
+            { "edge": { "en": "no", "zh": "不需要" }, "node": { "tools": ["Whisper"], "kind": "pipeline" } },
+            { "edge": { "en": "yes", "zh": "需要" }, "node": { "tools": ["WhisperX"], "kind": "pipeline" } }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "hand the timeline\nto an editor", "zh": "把时间线交给\n剪辑软件" },
+        "node": { "tools": ["OpenTimelineIO"], "kind": "pipeline" }
+      }
+    ]
+  }
+}

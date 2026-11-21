@@ -1,0 +1,51 @@
+{
+  "title": { "en": "Choosing a benchmark", "zh": "如何选择基准评测" },
+  "root": {
+    "q": { "en": "What do you want\nto measure?", "zh": "想评测什么？" },
+    "children": [
+      {
+        "edge": { "en": "agents making\nfinished videos", "zh": "agent 做出\n完整视频" },
+        "node": {
+          "q": { "en": "How should\nvideos be judged?", "zh": "用什么方式\n评判视频？" },
+          "children": [
+            {
+              "edge": { "en": "rubrics and\nVLM judges", "zh": "评分细则与\nVLM 评审" },
+              "node": { "tools": ["VibeVideoBench"] }
+            },
+            {
+              "edge": { "en": "pairwise Elo", "zh": "两两对比 Elo" },
+              "node": { "tools": ["Code2Video Bench"] }
+            }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "models writing\nanimation code", "zh": "模型编写\n动画代码" },
+        "node": {
+          "q": { "en": "Which target?", "zh": "目标是什么？" },
+          "children": [
+            {
+              "edge": { "en": "Manim", "zh": "Manim" },
+              "node": {
+                "q": { "en": "What matters\nmost?", "zh": "最关心什么？" },
+                "children": [
+                  { "edge": { "en": "API correctness", "zh": "API 正确性" }, "node": { "tools": ["ManiBench"] } },
+                  { "edge": { "en": "long-form\nexplanations", "zh": "长篇讲解" }, "node": { "tools": ["TheoremExplainBench"] } },
+                  { "edge": { "en": "teaching\neffect", "zh": "教学效果" }, "node": { "tools": ["Code2Video\nand MMMC"] } }
+                ]
+              }
+            },
+            {
+              "edge": { "en": "spatial layout", "zh": "空间布局" },
+              "node": { "tools": ["PRISM"] }
+            }
+          ]
+        }
+      },
+      {
+        "edge": { "en": "rebuilding code\nfrom video", "zh": "从视频\n还原代码" },
+        "node": { "tools": ["Animation2Code"] }
+      }
+    ]
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "title": { "en": "Choosing an MCP server or integration", "zh": "如何选择 MCP 服务与集成" },
+  "root": {
+    "q": { "en": "What should the agent\ncontrol over MCP?", "zh": "agent 要通过 MCP\n控制什么？" },
+    "children": [
+      {
+        "edge": { "en": "a timeline editor\nI also use by hand", "zh": "我也会手动操作\n的时间线编辑器" },
+        "node": {
+          "tools": ["Pireel", "OpenChatCut"],
+          "kind": "hybrid",
+          "note": { "en": "you keep GUI control", "zh": "人保留界面控制权" }
+        }
+      },
+      {
+        "edge": { "en": "recording a\nreal app", "zh": "录制真实应用" },
+        "node": { "tools": ["OpenVidStudio"], "kind": "hybrid" }
+      },
+      {
+        "edge": { "en": "recreating a\nreference reel", "zh": "复刻参考短片" },
+        "node": { "tools": ["mimic-mcp"], "kind": "hybrid" }
+      },
+      {
+        "edge": { "en": "a 3D scene", "zh": "3D 场景" },
+        "node": { "tools": ["Blender MCP"] }
+      }
+    ]
+  }
+}
