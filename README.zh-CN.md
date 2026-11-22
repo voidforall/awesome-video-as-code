@@ -82,7 +82,7 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 <p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/mcp.zh.dark.svg">
-    <img src="assets/diagrams/mcp.zh.svg" width="100%" alt="决策树：agent 要通过 MCP 控制什么？我也会手动操作的时间线编辑器选 Pireel 或 OpenChatCut，人保留界面控制权。录制真实应用选 OpenVidStudio。复刻参考短片选 mimic-mcp。以上都是混合管线工具。3D 场景选代码渲染的 Blender MCP。">
+    <img src="assets/diagrams/mcp.zh.svg" width="100%" alt="决策树：agent 要通过 MCP 控制什么？人机共用的时间线编辑器选 Pireel 或 OpenChatCut，人保留界面控制权。录制真实应用选 OpenVidStudio。复刻参考短片选 mimic-mcp。以上都是混合管线工具。3D 场景选代码渲染的 Blender MCP。">
   </picture>
 </p>
 
