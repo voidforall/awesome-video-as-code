@@ -65,6 +65,13 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 
 ## Agent 技能与工具
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/skills.zh.dark.svg">
+    <img src="assets/diagrams/skills.zh.svg" width="100%" alt="决策树：想让技能给 agent 带来什么？掌握已在用的框架时，Remotion 选 Remotion Agent Skills，HyperFrames 选 HyperFrames Skills。做好某一类视频时，基于产品页面的宣传片选 Video Shotcraft，为项目做发布短片选 brag，讲解与动效选 Motion Skills、Claude Motion Design 或 Videowright，手绘动画选 Anidoodle。需要带配音与素材的完整工作室时，选混合管线的 Claude Code Video Toolkit 或 OpenMontage，可能调用付费 API。剪辑与导出现有视频时，选基础设施工具 ffmpeg-skill。">
+  </picture>
+</p>
+
 - [Remotion Agent Skills](https://github.com/remotion-dev/skills) - Remotion 官方 agent 指令，覆盖构图、动画、音频、字幕、转场和渲染。
 - [HyperFrames Skills](https://github.com/heygen-com/hyperframes/tree/main/skills) - HyperFrames 官方技能，覆盖规划、创作、检查、预览、编辑和渲染。
 - [Claude Code Video Toolkit](https://github.com/digitalsamba/claude-code-video-toolkit) - 结合 Remotion、FFmpeg、浏览器录制、转录、语音、音乐和生成素材的 agent 工作区。
