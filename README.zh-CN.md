@@ -86,6 +86,13 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 
 ## MCP 服务与集成
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/mcp.zh.dark.svg">
+    <img src="assets/diagrams/mcp.zh.svg" width="100%" alt="决策树：agent 要通过 MCP 控制什么？人机共用的时间线编辑器选 Pireel 或 OpenChatCut，人保留界面控制权。录制真实应用选 OpenVidStudio。复刻参考短片选 mimic-mcp。以上都是混合管线工具。3D 场景选代码渲染的 Blender MCP。">
+  </picture>
+</p>
+
 - [Pireel](https://github.com/pireel/pireel) - 混合型时间线编辑器，其 agent 插件允许 MCP agent 编辑剪辑、字幕、图形、音频和导出，同时由人保留 GUI 控制。
 - [OpenVidStudio](https://github.com/AnayDhawan/openvidstudio) - 用 Playwright 捕获真实应用，并通过 Remotion 合成产品演示的混合型 MCP 工作流。
 - [mimic-mcp](https://github.com/pouyashahrdami/mimic-mcp) - 分析参考视频、从给定素材搭建 Remotion 项目、渲染并进行视觉复核的混合型 MCP 服务。

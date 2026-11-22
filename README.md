@@ -95,6 +95,13 @@ The core path is **brief → agent → executable visual code → deterministic 
 
 ## MCP Servers and Integrations
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/mcp.en.dark.svg">
+    <img src="assets/diagrams/mcp.en.svg" width="100%" alt="Decision tree: What should the agent control over MCP? A timeline editor you also use by hand leads to Pireel or OpenChatCut, where you keep GUI control. Recording a real app leads to OpenVidStudio. Recreating a reference reel leads to mimic-mcp. These are hybrid tools. A 3D scene leads to the code-rendered Blender MCP.">
+  </picture>
+</p>
+
 - [Pireel](https://github.com/pireel/pireel) - Hybrid timeline editor whose agent plugin lets MCP-capable agents edit cuts, captions, graphics, audio, and exports while a person retains GUI control.
 - [OpenVidStudio](https://github.com/AnayDhawan/openvidstudio) - Hybrid MCP workflow that captures a real application with Playwright and composes product footage with Remotion.
 - [mimic-mcp](https://github.com/pouyashahrdami/mimic-mcp) - Hybrid MCP server that analyzes a reference reel, scaffolds a Remotion project from supplied footage, renders it, and performs a visual review.
