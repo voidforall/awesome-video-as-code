@@ -4,7 +4,7 @@
     "q": { "en": "What should the agent\ncontrol over MCP?", "zh": "agent 要通过 MCP\n控制什么？" },
     "children": [
       {
-        "edge": { "en": "a timeline editor\nI also use by hand", "zh": "我也会手动操作\n的时间线编辑器" },
+        "edge": { "en": "a timeline editor\nI also use by hand", "zh": "人机共用的\n时间线编辑器" },
         "node": {
           "tools": ["Pireel", "OpenChatCut"],
           "kind": "hybrid",

@@ -26,15 +26,15 @@
       },
       "seed": 1001,
       "version": 2,
-      "versionNonce": 1403642216,
+      "versionNonce": 927858918,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "R1WpFEnavA5RfoCv7VeJJ"
+          "id": "szL2mVuyKaAMiD144xWyF"
         }
       ],
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false
     },
@@ -59,10 +59,10 @@
       "roundness": null,
       "seed": 7009,
       "version": 2,
-      "versionNonce": 2104314136,
+      "versionNonce": 758868090,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false,
       "points": [
@@ -102,10 +102,10 @@
       "roundness": null,
       "seed": 7007,
       "version": 2,
-      "versionNonce": 1371108456,
+      "versionNonce": 1692988454,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false,
       "points": [
@@ -147,19 +147,19 @@
       },
       "seed": 1002,
       "version": 3,
-      "versionNonce": 779522664,
+      "versionNonce": 1837178022,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "LihegOyrfeWaQNxKFBtPS"
+          "id": "EBgP7x-I_SJsnZpsf48km"
         },
         {
           "id": "n0-n1",
           "type": "arrow"
         }
       ],
-      "updated": 1795277730636,
+      "updated": 1795366605874,
       "link": null,
       "locked": false
     },
@@ -184,15 +184,15 @@
       "roundness": null,
       "seed": 5002,
       "version": 3,
-      "versionNonce": 401165080,
+      "versionNonce": 519436282,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "MmpXQXTp4EDyk8X3sXkTH"
+          "id": "BcMQA1VjwwzIy_BhFnaC_"
         }
       ],
-      "updated": 1795277730636,
+      "updated": 1795366605874,
       "link": null,
       "locked": false,
       "points": [
@@ -239,19 +239,19 @@
       },
       "seed": 1003,
       "version": 3,
-      "versionNonce": 1849936744,
+      "versionNonce": 1321096806,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "Wi4UNDCbQuPbwEpCPeFMx"
+          "id": "Kz4fKRCQmNP4DgZb1rn2g"
         },
         {
           "id": "n0-n2",
           "type": "arrow"
         }
       ],
-      "updated": 1795277730637,
+      "updated": 1795366605877,
       "link": null,
       "locked": false
     },
@@ -276,15 +276,15 @@
       "roundness": null,
       "seed": 5003,
       "version": 3,
-      "versionNonce": 1983316504,
+      "versionNonce": 1400734266,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "8ISg7iyB9Y4lDxC6hSmmF"
+          "id": "UdRRcNr2qIarxXtslZnMU"
         }
       ],
-      "updated": 1795277730637,
+      "updated": 1795366605877,
       "link": null,
       "locked": false,
       "points": [
@@ -331,19 +331,19 @@
       },
       "seed": 1004,
       "version": 3,
-      "versionNonce": 168797288,
+      "versionNonce": 359196710,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "CVfm8-id0uAuFdVzk9L9A"
+          "id": "lROz5lO8CMnRi99syZN8n"
         },
         {
           "id": "n0-n3",
           "type": "arrow"
         }
       ],
-      "updated": 1795277730642,
+      "updated": 1795366605882,
       "link": null,
       "locked": false
     },
@@ -368,15 +368,15 @@
       "roundness": null,
       "seed": 5004,
       "version": 3,
-      "versionNonce": 19667224,
+      "versionNonce": 1243493498,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "yEglyUFDwhm4u570eZb19"
+          "id": "DmK5r2In3ig9auZttgjh6"
         }
       ],
-      "updated": 1795277730642,
+      "updated": 1795366605882,
       "link": null,
       "locked": false,
       "points": [
@@ -423,19 +423,19 @@
       },
       "seed": 1005,
       "version": 3,
-      "versionNonce": 920526184,
+      "versionNonce": 1331679718,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "Dn5iCThiGRGko1qo-lGt1"
+          "id": "VgJXpNppY26MfKlnqagqh"
         },
         {
           "id": "n0-n4",
           "type": "arrow"
         }
       ],
-      "updated": 1795277730642,
+      "updated": 1795366605883,
       "link": null,
       "locked": false
     },
@@ -460,15 +460,15 @@
       "roundness": null,
       "seed": 5005,
       "version": 3,
-      "versionNonce": 1032097816,
+      "versionNonce": 1686703802,
       "isDeleted": false,
       "boundElements": [
         {
           "type": "text",
-          "id": "TAoteWrk_z19udPp9VvSL"
+          "id": "sQNClmfotoywoj3hqI0ru"
         }
       ],
-      "updated": 1795277730642,
+      "updated": 1795366605883,
       "link": null,
       "locked": false,
       "points": [
@@ -515,10 +515,10 @@
       },
       "seed": 9000,
       "version": 2,
-      "versionNonce": 1099209240,
+      "versionNonce": 1491655738,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false
     },
@@ -543,10 +543,10 @@
       "roundness": null,
       "seed": 9500,
       "version": 2,
-      "versionNonce": 2050732904,
+      "versionNonce": 734895206,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false,
       "text": "代码渲染",
@@ -582,10 +582,10 @@
       },
       "seed": 9156,
       "version": 2,
-      "versionNonce": 521770776,
+      "versionNonce": 1991591162,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false
     },
@@ -610,10 +610,10 @@
       "roundness": null,
       "seed": 9656,
       "version": 2,
-      "versionNonce": 708904552,
+      "versionNonce": 1843994534,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730628,
+      "updated": 1795366605855,
       "link": null,
       "locked": false,
       "text": "混合管线",
@@ -627,7 +627,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "R1WpFEnavA5RfoCv7VeJJ",
+      "id": "szL2mVuyKaAMiD144xWyF",
       "type": "text",
       "x": 343.7216796875,
       "y": 16,
@@ -645,12 +645,12 @@
       "frameId": null,
       "index": "aF",
       "roundness": null,
-      "seed": 1527182360,
+      "seed": 410424762,
       "version": 3,
-      "versionNonce": 1135267096,
+      "versionNonce": 883631994,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "agent 要通过 MCP\n控制什么？",
@@ -664,7 +664,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "LihegOyrfeWaQNxKFBtPS",
+      "id": "EBgP7x-I_SJsnZpsf48km",
       "type": "text",
       "x": 26.83984375,
       "y": 248,
@@ -682,12 +682,12 @@
       "frameId": null,
       "index": "aG",
       "roundness": null,
-      "seed": 1262530840,
+      "seed": 1062194810,
       "version": 3,
-      "versionNonce": 990261352,
+      "versionNonce": 479765798,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "Pireel\nOpenChatCut\n(人保留界面控制权)",
@@ -701,11 +701,11 @@
       "lineHeight": 1.25
     },
     {
-      "id": "MmpXQXTp4EDyk8X3sXkTH",
+      "id": "BcMQA1VjwwzIy_BhFnaC_",
       "type": "text",
-      "x": 50.5,
+      "x": 59.5,
       "y": 149.5,
-      "width": 126,
+      "width": 108,
       "height": 45,
       "angle": 0,
       "strokeColor": "#1e1e1e",
@@ -719,26 +719,26 @@
       "frameId": null,
       "index": "aH",
       "roundness": null,
-      "seed": 1731907096,
+      "seed": 1342435130,
       "version": 3,
-      "versionNonce": 67201560,
+      "versionNonce": 311175226,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
-      "text": "我也会手动操作\n的时间线编辑器",
+      "text": "人机共用的\n时间线编辑器",
       "fontSize": 18,
       "fontFamily": 5,
       "textAlign": "center",
       "verticalAlign": "middle",
       "containerId": "n0-n1",
-      "originalText": "我也会手动操作\n的时间线编辑器",
+      "originalText": "人机共用的\n时间线编辑器",
       "autoResize": true,
       "lineHeight": 1.25
     },
     {
-      "id": "Wi4UNDCbQuPbwEpCPeFMx",
+      "id": "Kz4fKRCQmNP4DgZb1rn2g",
       "type": "text",
       "x": 295.822265625,
       "y": 273,
@@ -756,12 +756,12 @@
       "frameId": null,
       "index": "aI",
       "roundness": null,
-      "seed": 130033688,
+      "seed": 2083055802,
       "version": 3,
-      "versionNonce": 1186194280,
+      "versionNonce": 1238700134,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "OpenVidStudio",
@@ -775,7 +775,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "8ISg7iyB9Y4lDxC6hSmmF",
+      "id": "UdRRcNr2qIarxXtslZnMU",
       "type": "text",
       "x": 304,
       "y": 173.25,
@@ -793,12 +793,12 @@
       "frameId": null,
       "index": "aJ",
       "roundness": null,
-      "seed": 1924359448,
+      "seed": 1061142906,
       "version": 3,
-      "versionNonce": 427583256,
+      "versionNonce": 906957050,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "录制真实应用",
@@ -812,7 +812,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "CVfm8-id0uAuFdVzk9L9A",
+      "id": "lROz5lO8CMnRi99syZN8n",
       "type": "text",
       "x": 517.9013671875,
       "y": 273,
@@ -830,12 +830,12 @@
       "frameId": null,
       "index": "aK",
       "roundness": null,
-      "seed": 1631518488,
+      "seed": 1136995066,
       "version": 3,
-      "versionNonce": 406009448,
+      "versionNonce": 1122112422,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "mimic-mcp",
@@ -849,7 +849,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "yEglyUFDwhm4u570eZb19",
+      "id": "DmK5r2In3ig9auZttgjh6",
       "type": "text",
       "x": 510,
       "y": 173.25,
@@ -867,12 +867,12 @@
       "frameId": null,
       "index": "aL",
       "roundness": null,
-      "seed": 71261208,
+      "seed": 1184480186,
       "version": 3,
-      "versionNonce": 546292760,
+      "versionNonce": 1656152506,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "复刻参考短片",
@@ -886,7 +886,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "Dn5iCThiGRGko1qo-lGt1",
+      "id": "VgJXpNppY26MfKlnqagqh",
       "type": "text",
       "x": 703.7216796875,
       "y": 273,
@@ -904,12 +904,12 @@
       "frameId": null,
       "index": "aM",
       "roundness": null,
-      "seed": 460928536,
+      "seed": 1414458,
       "version": 3,
-      "versionNonce": 1146104168,
+      "versionNonce": 1911336678,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "Blender MCP",
@@ -923,7 +923,7 @@
       "lineHeight": 1.25
     },
     {
-      "id": "TAoteWrk_z19udPp9VvSL",
+      "id": "sQNClmfotoywoj3hqI0ru",
       "type": "text",
       "x": 727.75048828125,
       "y": 173.25,
@@ -941,12 +941,12 @@
       "frameId": null,
       "index": "aN",
       "roundness": null,
-      "seed": 135967512,
+      "seed": 1776475642,
       "version": 3,
-      "versionNonce": 120553752,
+      "versionNonce": 1940298362,
       "isDeleted": false,
       "boundElements": null,
-      "updated": 1795277730642,
+      "updated": 1795366605884,
       "link": null,
       "locked": false,
       "text": "3D 场景",
