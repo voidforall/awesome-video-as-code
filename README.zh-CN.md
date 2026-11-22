@@ -101,6 +101,13 @@ Video as code 把可执行代码当作视觉媒介：agent 编写 HTML、Canvas�
 
 ## 生产管线
 
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="assets/diagrams/pipeline.zh.dark.svg">
+    <img src="assets/diagrams/pipeline.zh.svg" width="100%" alt="决策树：需要管线中的哪一步？编码、混音或转换时看在哪里运行：命令行或服务器选 FFmpeg，浏览器内选 ffmpeg.wasm。从语音生成字幕时看是否需要逐词时间轴：不需要选 Whisper，需要选 WhisperX。把时间线交给剪辑软件选 OpenTimelineIO。">
+  </picture>
+</p>
+
 - [FFmpeg](https://ffmpeg.org/) - 用于编码、封装、滤镜、音频混合、媒体探测和格式转换的基础工具。
 - [OpenTimelineIO](https://github.com/AcademySoftwareFoundation/OpenTimelineIO) - 面向剪辑时间线、片段、轨道、转场和适配器的交换格式与 API。
 - [Whisper](https://github.com/openai/whisper) - 可为字幕工作流生成转录文本的语音识别模型与参考实现。
